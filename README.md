@@ -1,8 +1,6 @@
 # Suspicious
 
-IT Threats GeoDashboard
-
-Demo : http://awstats.linuxtribe.fr/suspicious/
+IT Threats GeoDashboard - [Demo](http://awstats.linuxtribe.fr/suspicious/)
 
 # Features
 
