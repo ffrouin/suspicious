@@ -2,6 +2,9 @@
 
 IT Threats GeoDashboard
 
+Demo available here :
+http://awstats.linuxtribe.fr/suspicious/
+
 # Features
 
 **Statistic reports** : country, services, targets
@@ -34,9 +37,9 @@ if you try to deploy it on a Windows server.
   
 # How to deploy Suspicious
 
-We first need to put in place the MaxMind GeoIP framework. Then we'll configure different fail2ban nodes to send their
-logs to our backend server. And after we setup the frontend service with a web server we will run the backend script
-that may format your data for the Suspicious frontend.
+We first need to put in place the MaxMind GeoIP framework on our backend server. Then we'll configure different
+fail2ban nodes to send their logs to our backend server. And after we setup the frontend service with a web
+service we will run the backend script that may format your data for the Suspicious frontend.
 
 ## MaxMind GeoIP framework
 
@@ -67,25 +70,4 @@ Once a week, after weekly logs rotation, a crontab entry launch the fail2ban log
 On the backend node, you may see all your log files in the */path/to/my/backend/scripts* path as *node_name*.fail2ban.log.
 When you've got all your files in it, you are ready to configure the Makefile that will allow data formatting for the
 frontend.
-
-## Backend
-
-The backend consist in a Makefile that will call the perl backend script for each fail2ban node. The perl backend
-will process each node logs and produce a non-persistent CSV file that will report weekly IT threats activity.
-As a complement, the perl backend will store it threat events in the CSV tree database accessible from the
-frontend.
-
-So, you choose to put the working dir of the suspicious backend wherever you like. Maybe in a parent directory of
-your web server root directory...
-
-### Makefile
-
-
-
-
-### Crontab
-
-In order to refresh the frontend every week, update your crontab :
-
-30 3 * * 1 cd */path/to/my/backend/scripts/* && make 2>&1 >/dev/null
 
