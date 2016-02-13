@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  background: #C3E1D4;
+}
+.stroke {
+  fill: none;
+  stroke: #000;
+  stroke-width: 3px;
+}
+.fill {
+  fill: #fff;
+}
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+.land {
+  fill: #3B8E6A;
+}
+.boundary {
+  fill: none;
+  stroke: #58A282;
+  stroke-width: .1px;
+}
+div.infoPanel {
+  position: absolute;
+  border-radius: 25px;
+//  border: 1px solid #000;
+  padding: 20px; 
+  font: 14px serif;
+  background: #78B79C;
+  text-align: left;
+  width: auto;
+  height: auto;
+  opacity: 0.8;
+  display: table-cell;
+}
+#SDTitle {
+  font-size: 25px;
+  font-style: oblique;
+  font-weight: bold;
+  font-variant: small-caps;
+  text-align: center;
+}
+#SDRevision {
+  font-size: 10px;
+  text-align: center;
+}
+#SDReport {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+#SDCommand {
+  text-align: center;
+  height: 60px;
+  padding: 10px;
+}
+#SDLegend {
+  border-radius: 25px;
+  border: 1px dashed #000;
+  height: 120px;
+  padding: 20px;
+  text-align: center;
+}
+#SDLegend h2 {
+  font-variant: small-caps;
+  font-size: 14px;
+  text-align: center;
+}
+div.infoPanel h2 {
+  font-size: 16px;
+  font-style: italic;
+}
+div.infoPanel div.figure {
+  float: left;
+  border: none;
+  padding: 10px;
+}
+div.infoPanel div.figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.infoPanel div.figure img.command {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.infoPanel div.figure p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+  text-indent: 0;
+}
+</style>
+<body>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/topojson.v1.min.js"></script>
+<script src="js/queue.v1.min.js"></script>
+<script src="js/d3.geo.projection.v0.min.js"></script>
+<div id="suspiciousDashboard">
+  <div id="SDTitle"></div>
+  <div id="SDRevision"></div>
+  <div id="SDCommand"></div>
+  <div id="SDReport"></div>
+  <div id="SDLegend"></div>
+</div>
+<script>
+
+setcursor("wait");
+
+// define drag functions
+function dragstarted(d) {
+  d3.event.sourceEvent.stopPropagation();
+  d3.select(this).classed("dragging", true);
+}
+
+function dragged(d) {
+  d.x = d3.mouse(this)[0];
+  d.y = d3.mouse(this)[1];
+  d3.select(this).attr("x", d3.mouse(this)[0]).attr("y", d3.mouse(this)[1]);
+}
+
+function dragended(d) {
+  d3.select(this).classed("dragging", false);
+}
+
+var drag = d3.behavior.drag()
+    .origin(function(d) { return d; })
+    .on("dragstart", dragstarted)
+    .on("drag", dragged)
+    .on("dragend", dragended);
+
+// init map size
+var width = window.innerWidth,
+    height = window.innerHeight;
+
+// define geo projection
+var projection = d3.geo.kavrayskiy7()
+    .scale(170)
+    .translate([width / 2, height / 2])
+    .precision(.1);
+
+// define path and graticule
+var path = d3.geo.path()
+    .projection(projection);
+var graticule = d3.geo.graticule();
+
+// init suspicious dashboard
+var SD = d3.select("#suspiciousDashboard")
+    .attr("class", "infoPanel");
+
+//    .on("mouseover", function() { setcursor("default"); });
+
+var timelineSwitch = false;
+var formatTimeReport = d3.time.format("%d/%m/%Y - %H:00");
+var formatTimeDBPath = d3.time.format("db/%Y/%m/%d/suspicious_%Hh00.csv");
+
+var currentDate = new Date;
+var currentReport = "home";
+
+function dateMoveDays(d) {
+   currentDate=d3.time.day.offset(currentDate, d);
+}
+function dateMoveHours(d) {
+   currentDate=d3.time.hour.offset(currentDate, d);
+}
+
+dateMoveDays(-7);
+
+var commandMap = [ { 'img/cmd-home.png' : 'home' },
+                   { 'img/cmd-region.png' : 'regions' },
+                   { 'img/cmd-services.png' : 'services' },
+                   { 'img/cmd-stats.png' : 'targets' },
+                   { 'img/cmd-time.png' : 'timeline' },
+                   { 'img/cmd-time-backward.png' : 'timeline-backward' },
+                   { 'img/cmd-time-forward.png' : 'timeline-forward' }
+                 ];
+
+var legendMap = [ { 'img/ssh-threat.png' : 'Authentication' },
+                  { 'img/sip-threat.png' : 'Telephony' },
+                  { 'img/mail-threat.png' : 'Email' },
+                  { 'img/wordpress-threat.png' : 'Web' },
+                  { 'img/hacker-threat.png' : 'Recidive' },
+                  { 'img/unknown-threat.png' : 'Uncommented' }
+                ];
+
+SD.select("#SDTitle").text("Linuxtribe Earth IT Threats");
+
+SD.select("#SDCommand")
+               .selectAll("command")
+               .data(commandMap).enter()
+               .append("div").attr("class","figure")
+               .append("img")
+               .attr("class","command")
+               .attr("src",function(d) { return d3.map(d).keys(); })
+               .attr("alt",function(d) { return d3.map(d).values(); })
+               .attr("width", 40)
+               .attr("height", 40)
+               .on('mousedown', function(d) { 
+					      if (timelineSwitch == false) {
+						if(d3.map(d).values() == "regions") { regionsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
+						if(d3.map(d).values() == "services") { servicesReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
+						if(d3.map(d).values() == "targets") { targetsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
+						if(d3.map(d).values() == "timeline") { timelineSwitch = true; timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "home") { welcome(); }
+                                              } else if (timelineSwitch == true) {
+						if(d3.map(d).values() == "regions") { regionsReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "services") { servicesReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "targets") { targetsReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "timeline") { timelineSwitch = false; load_threats("banned_ip.csv"); }
+						if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-1); timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "timeline-forward") { dateMoveHours(+1); timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "home") { welcome(); }
+                                              }
+                                             })
+               .on("mouseover", function() { setcursor("pointer"); })
+               .on("mouseout", function() { setcursor("default"); });
+
+SD.select("#SDLegend").append("h2").text("Threat Legend");
+SD.select("#SDLegend")
+               .selectAll("legend")
+               .data(legendMap).enter()
+               .append("div").attr("class","figure")
+               .append("img")
+               .attr("class","legend")
+               .attr("src",function(d) { return d3.map(d).keys(); })
+               .attr("width", 40)
+               .attr("height", 40);
+
+SD.select("#SDLegend").selectAll(".legend").each(
+  function(d) {
+    d3.select(this.parentElement).append("p").text(
+      function(d) { 
+       return d3.map(d).values();
+      });
+  }
+);
+
+SD.select("#SDRevision").html("Build v0.8 08/02/2016 - author: <a href=\"http://freddy.linuxtribe.fr\">freddy@linuxtribe.fr</a>");
+
+var SDReport = SD.select("#SDReport");
+
+SDReport.html("Creating svg...");
+
+// add SVG map to html body
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+       .call(d3.behavior.zoom().scaleExtent([1, 30]).on("zoom", zoom))
+       .on("dblclick.zoom", null)
+    .append("g"); 
+
+// init map
+svg.append("defs").append("path")
+    .datum({type: "Sphere"})
+    .attr("id", "sphere")
+    .attr("d", path);
+svg.append("use")
+    .attr("class", "stroke")
+    .attr("xlink:href", "#sphere");
+svg.append("use")
+    .attr("class", "fill")
+    .attr("xlink:href", "#sphere");
+svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+SDReport.html("Loading earth data...");
+
+// load geo ressources
+queue()
+   .defer(d3.json, 'geo/world-50m.json')
+   .defer(d3.tsv, 'geo/world-country-names.tsv')
+   .await(ready)
+
+function ready(error, world, names) {
+  if (error) throw error;
+
+  // init countries
+  var countries = topojson.feature(world, world.objects.countries).features,
+      neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+  countries = countries.filter(function(d) {
+    return names.some(function(n) {
+      if (d.id == n.id) return d.name = n.name
+    })
+  })
+
+  SDReport.html("Create world countries");
+
+  svg.selectAll(".country")
+    .data(countries)
+    .enter().insert("path", ".graticule")
+      .attr("class", "country")
+      .attr({
+        'data-name': function(d) {
+          return d.name
+        },
+        'data-x-centroid': function(d) {
+          return path.centroid(d)[0]
+        },
+        'data-y-bottom': function(d) {
+          return path.bounds(d)[1][1]
+        }
+      })
+      .attr("d", path)
+      // click down country
+      .on('mousedown', function() {
+        var country = d3.select(this).style('fill', '#9ECDB9')
+        var countryName = country.attr('data-name')
+        SDReport.html("<h2>Country Report</h2><p>Selected country is " + countryName + " (source : geographic)</p>");
+      })
+      // mouse out country
+      .on('mouseout', function() {
+        d3.select(this).style('fill', '#3B8E6A')
+        setcursor("move");
+      })
+      // mouse over country
+      .on('mouseover', function() {
+        setcursor("pointer");
+      })
+      .attr('title', 'country-path')
+      .style("fill", "#3B8E6A");
+
+  SDReport.html("Create world boundaries");
+  // create world boundary
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+      .attr("class", "boundary")
+      .attr("d", path)
+      .on("mouseover", function() { setcursor("pointer"); });
+
+  // inform end-user everything's loaded
+  SDReport.html("Loading threats...");
+  load_threats("banned_ip.csv");
+}
+
+function load_threats(csvthreat) {
+  d3.csv(csvthreat, function(error, data) {
+    var nodes = svg.selectAll("banned_ip")
+                   .data(data)
+                   .enter()
+                   .append("image")
+                   .attr("class","banned_ip")
+                   .attr("xlink:href", function(d) { 
+                     if (d.service.includes('recidive')||d.occurences>=10) { return('hacker-threat.png'); }
+                     else if (d.service == 'ssh') { return('ssh-threat.png'); }
+                     else if (d.service.includes('cgpro-sip')) { return('sip-threat.png'); }
+                     else if (d.service.includes('cgpro-smtp')) { return('mail-threat.png'); }
+                     else if (d.service.includes('-wp')) { return('wordpress-threat.png'); }
+                     else { return('unknown-threat.png'); }
+                   })
+                   .attr("x", function(d) {
+                     if (d.occurences>5) { return(projection([d.lon, d.lat])[0] - 3); }
+                     else { return(projection([d.lon, d.lat])[0] - d.occurences/2); }
+                       return(projection([d.lon, d.lat])[0] - d.occurences/2);
+                   })
+                   .attr("y", function(d) {
+                     if (d.occurences>5) { return(projection([d.lon, d.lat])[1] - 3); }
+                     else { return(projection([d.lon, d.lat])[1] - d.occurences/2); }
+                   })
+                   .attr("id", function(d) {
+                     return(d.ip + "-" + d.service + "-" + d.occurences);
+                   })
+                   .attr("width", function(d) { if (d.occurences>5) {return(6);} else {return(d.occurences*2) }})
+                   .attr("height", function(d) { if (d.occurences>5) {return(6);} else {return(d.occurences*2) }})
+                   .call(drag)
+                   .on("mouseover", function(d) {      
+                     setcursor("crosshair");
+                   })                  
+                   .on("mouseout", function(d) {       
+                     setcursor("move");
+                   })
+                   .on("dblclick", function(d) { detect_overlap(this); })
+                   .on("mousedown", function(d) { updateInfoPanel(d); });
+    }).on("progress", function(event){
+      if (d3.event.lengthComputable) {
+        var percentComplete = Math.round(d3.event.loaded * 100 / d3.event.total);
+        //console.log("loading data : " + percentComplete + "%" );
+        if (percentComplete == 100 && timelineSwitch == false) { welcome(); setcursor("move"); }
+      }
+   });
+}
+
+function targetsReport(csvthreat) {
+  d3.csv(csvthreat, function(data) {
+    var report = '';
+    if (timelineSwitch == true) {
+      report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    }
+    report += "<h2>Targets Reports</h2>";
+
+    var nested_data = d3.nest()
+           .key(function(d) { return d.host; })
+           .key(function(d) { return d.ip; })
+//           .rollup(function(leaves) { return leaves.length; })
+           .entries(data);
+
+    var total_host = 0;
+    nested_data.forEach(function(i) { total_host += i.values.length; });
+
+    nested_data.forEach(function(i) {
+      report += i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_host*100) + "%) suspicious clients<br/>";
+    });
+
+    SDReport.html(report);
+  });
+}
+
+function servicesReport(csvthreat) {
+  d3.csv(csvthreat, function(data) {
+    var report = '';
+    if (timelineSwitch == true) {
+      report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    }
+    report +=  "<h2>Services Reports</h2>";
+
+    nested_data = d3.nest()
+           .key(function(d) { return d.service; })
+           .key(function(d) { return d.ip; })
+           .entries(data);
+
+    var total_service = 0;
+    nested_data.forEach(function(i) { total_service += i.values.length; });
+
+    nested_data.forEach(function(i) {
+      report += i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_service*100) + "%) suspicious clients<br/>";
+    });
+
+    SDReport.html(report);
+  });
+}
+
+function regionsReport(csvthreat) {
+  d3.csv(csvthreat, function(data) {
+    var report = '';
+    if (timelineSwitch == true) {
+      report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    }
+    report += "<h2>Region Reports</h2>";
+
+    nested_data = d3.nest() 
+           .key(function(d) { return d.country; })
+           .key(function(d) { return d.ip; })
+           .entries(data);
+
+    var total_country = 0;
+    nested_data.forEach(function(i) { total_country += i.values.length; });
+
+    nested_data.forEach(function(i) {
+      report += i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_country*100) + "%) suspicious clients<br/>";
+    });
+
+    SDReport.html(report);
+  });
+}
+
+function timelineReport(csvthreat) {
+   var nodes = svg.selectAll(".banned_ip").remove();
+   nodes = [];
+
+   load_threats(csvthreat);
+
+   if(currentReport == "regions") { regionsReport(csvthreat); return(0); }
+   if(currentReport == "services") { servicesReport(csvthreat); return(0); }
+   if(currentReport == "targets") { targetsReport(csvthreat); return(0); }
+
+   var report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+   SDReport.html(report);
+}
+
+function welcome() {
+  var report = '';
+  if (timelineSwitch == true) {
+    report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+  }
+  report += "<h2>Welcome</h2>";
+  report += "<p>This dashboard allows you to geolocalise and to obtain statistics reports about IT Threats."
+  report += "<p><b>Statistic reports</b> : country, services, targets.<br/>";
+  report += "<b>Threat reports</b> : target, source, geolocalise (country, region, city), service, timelog<br/>";
+  report += "<b>Map features</b> : drag, zoom, select country, select it threat, drag it threat, disperse it threats (double click).<br/>";
+  report += "<b>Timeline reports</b> : move backward and forward in time threat database.<br/>Selecting a report before going into timeline mode results into report survey over timeline.</p>";
+
+  SDReport.html(report);
+}
+
+function updateInfoPanel(d) {
+  SD.select("#SDReport").html( "<h2>Threat Reports</h2>"
+    + "Suspicious activity detected on <b>" + d.host +"</b><br/><br/>"
+    + "<b>IP address :</b>  <a href=\"http://www.ip-adress.com/whois/"
+    + d.ip + "\" target=\"_blank\">" + d.ip + "</a>"
+    + "<br/><b>Country :</b> " + d.country
+    + "<br/><b>Region/City :</b> " + d.region + "/" + d.city 
+    + " (source : geoip)<br/>" + "<b>Service :</b> " + d.service
+    + " (" + d.occurences + " occurences)<br/>"
+    + "<br/><b>Timelog</b><br/>" + d.timelog
+    );
+}
+
+function detect_overlap(node) {
+  var nodes = d3.selectAll(".banned_ip");
+
+  nodes.transition()
+                .attr("transform", function(d) { 
+                   var mx = node.x.baseVal.value;
+                   var my = node.y.baseVal.value;
+                   var mr = node.width.baseVal.value/2;
+
+                   var dx = this.x.baseVal.value-mx;
+                   var dy = this.y.baseVal.value-my;
+                   var dr = this.width.baseVal.value/2;
+
+                   if (Math.abs(dx)<=(mr+dr) && Math.abs(dy)<=(mr+dr) && this!=node) {
+                     return "translate( " + (mr+dr)/2*dx + ", " + (mr+dr)/2*dy + ")";
+                   }
+                 });
+
+}
+
+function zoom() {
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+function setcursor(cursor)
+{
+  d3.select("body").style("cursor", cursor);
+}
+d3.select(self.frameElement).style("height", height + "px");
+</script>
+</body>
+</html>
