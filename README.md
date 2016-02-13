@@ -34,40 +34,9 @@ if you try to deploy it on a Windows server.
 
   * web server : nginx, lighttpd will serve our static files to end-users internet browsers
   * d3js : this technology will be used to build the Suspicious GeoDashboard interface
-  
-# How to deploy Suspicious
 
-We first need to put in place the MaxMind GeoIP framework on our backend server. Then we'll configure different
-fail2ban nodes to send their logs to our backend server. And after we setup the frontend service with a web
-service we will run the backend script that may format your data for the Suspicious frontend.
+# Author
 
-## MaxMind GeoIP framework
+Freddy Frouin
 
-0 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoIP.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoIP.dat.gz
-
-5 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoLiteCity.dat.gz
-
-10 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoIPASNum.dat.gz http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoIPASNum.dat.gz
-
-### Run a self test with your IP
-
-If you don't have geoiplookup command available on your system, you may try this :
-
-sudo apt-get install geoip-bin
-
-in a terminal, use the following command to check your GeoIP Database is working :
-
-/usr/bin/geoiplookup -f */path/to/my/favorite/lib/dir*/GeoLiteCity.dat *ip*
-
-## Fail2ban log convergence
-
-There's many options to manage logs over the network. Most elegant would be to route logs thanks to the syslogd service.
-I choosed the option to use an ssh tunnel with RSA key auth to transfert the logs from the different fail2ban nodes.
-Once a week, after weekly logs rotation, a crontab entry launch the fail2ban log transfert to my backend node :
-
-0 7 * * 1 scp /var/log/fail2ban.log.1 *backend_host*:*/path/to/my/backend/scripts*/*node_name*.fail2ban.log
-
-On the backend node, you may see all your log files in the */path/to/my/backend/scripts* path as *node_name*.fail2ban.log.
-When you've got all your files in it, you are ready to configure the Makefile that will allow data formatting for the
-frontend.
-
+http://freddy.linuxtribe.fr
