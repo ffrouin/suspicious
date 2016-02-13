@@ -22,14 +22,14 @@ Suspicious may be deployed within a web instance :
 
 /var/www/suspicious.yourdomain.com/backend (perl scripts)
 
-### MaxMind GeoIP framework
+### MaxMind GeoIP
 
 Just check your system has wget command installed or install it :
 
 sudo apt-get install wget
 
 There's many way to add crontab entries : users crontab, /etc/cron* files. Here are
-entries you may use to update your locate GeoIP database :
+entries you may use to update your local GeoIP database :
 
 0 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoIP.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoIP.dat.gz
 
@@ -58,7 +58,8 @@ make install SITE_PATH=/var/www/suspicious.yourdomain.com
 ### Instanciate a web service with nginx, lighttpd or even apache2
 
 End users should not access the backend, this directory can't be a child directory
-of your web root directory (htdocs).
+of your web root directory (htdocs). Backend and Frontend directory may be in the
+same directory while Frontend directory will be root directory of your web instance.
 
 ### Configure the backend
 
