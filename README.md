@@ -54,7 +54,7 @@ sudo apt-get install geoip-bin
 
 in a terminal, use the following command to check your GeoIP Database is working :
 
-/usr/bin/geoiplookup -f /usr/share/GeoIP/GeoLiteCity.dat *ip*
+/usr/bin/geoiplookup -f */path/to/my/favorite/lib/dir*/GeoLiteCity.dat *ip*
 
 ## Fail2ban log convergence
 
