@@ -36,7 +36,6 @@ if you try to deploy it on Windows.
 
 # [How to deploy Suspicious GeoDashboard](INSTALL.md)
 
-# Author
+# [Author](http://freddy.linuxtribe.fr)
 
-[Freddy Frouin](http://freddy.linuxtribe.fr)
 
