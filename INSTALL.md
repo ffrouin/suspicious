@@ -61,12 +61,13 @@ geoiplookup: /usr/bin/geoiplookup /usr/bin/X11/geoiplookup /usr/share/man/man1/g
 Just check your system has wget, gunzip commands installed or install them :
 
 sudo apt-get install wget
+
 sudo apt-get install gunzip
 
 Our Makefile provide maxmind geoip deployment feature if you use "maxmind" as
 arg. Libs will be deployed in /usr/lib/maxmind. If you change this path,
 please update backend/collectors/geoiplookup.conf file in order suspicious
-to use your path.
+to use your path instead of /usr/lib/maxmind.
 
 There's many way to add crontab entries : users crontab, /etc/cron* files. Here are
 entries you may use to update your local GeoIP database :
@@ -95,7 +96,7 @@ cd suspicious
 
 make install SITE_PATH=/var/www/suspicious.yourdomain.com
 
-### Instanciate a web service with nginx, lighttpd or even apache2
+### Instanciate a web service with nginx, lighttpd
 
 End users should not access the backend, this directory can't be a child directory
 of your web root directory (htdocs). Backend and Frontend directory may be in the
@@ -116,8 +117,11 @@ the data for the frontend.
 Configuration is very simple :
 
 ;node	collector	processor	tag		file
+
 root@ns1	scp		fail2ban	ns1		/var/log/fail2ban.log.1
+
 root@ns2	scp		fail2ban	ns2		/var/log/fail2ban.log.1
+
 root@ns3	scp		fail2ban	ns3		/var/log/fail2ban.log.1
 
 ### Launch backend processing
@@ -142,3 +146,6 @@ the backend.
 * the frontend/db directory has been updated with sub directory trees
 containing timelined suspicious csv files.
 
+Go back to your web browser and you may see at last authentication reports
+if your fail2ban service is configured to monitor the ssh service on the
+different nodes.
