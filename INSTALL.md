@@ -32,7 +32,7 @@ Suspicious may be deployed within a web instance :
 
 /var/www/suspicious.yourdomain.com/backend/collectors (collectors config)
 
-/var/www/suspicious.yourdomain.com/backend/processors (processors config)
+/var/www/suspicious.yourdomain.com/backend/processors (processors scripts)
 
 /var/www/suspicious.yourdomain.com/backend/logs (backend working dir)
 
