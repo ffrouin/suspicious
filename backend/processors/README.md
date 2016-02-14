@@ -10,8 +10,8 @@ suspicious support only a fail2ban processor script.
 ## Launch requirements
 
 Backend processors take two launch args :
-* tag : this tag will be used as a threat target as a reference of real host
-present in logs. This allow you
+* tag : this tag will be used as a threat target, a reference to real host
+present in logs. This allow you to masquerade real host data in your reports.
 * hist_dir : root directory of the timelined csv tree.
 
 ## Output
