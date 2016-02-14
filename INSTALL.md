@@ -171,11 +171,18 @@ return('img/service-threat.png')
 Here is the native peace of code included in your index.html :
 
 .attr("xlink:href", function(d) {
+
                      if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
+
                      else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
+
                      else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
+
                      else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
+
                      else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
+
                      else { return('img/unknown-threat.png'); }
+
                    })
 
