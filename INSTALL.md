@@ -107,13 +107,10 @@ the data for the frontend.
 
 Configuration is very simple :
 
-;node	collector	processor	tag		file
-
-root@ns1	scp		fail2ban	ns1		/var/log/fail2ban.log.1
-
-root@ns2	scp		fail2ban	ns2		/var/log/fail2ban.log.1
-
-root@ns3	scp		fail2ban	ns3		/var/log/fail2ban.log.1
+	;node	collector	processor	tag		file
+	root@ns1	scp		fail2ban	ns1		/var/log/fail2ban.log.1
+	root@ns2	scp		fail2ban	ns2		/var/log/fail2ban.log.1
+	root@ns3	scp		fail2ban	ns3		/var/log/fail2ban.log.1
 
 ### Launch backend processing
 
