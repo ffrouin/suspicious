@@ -150,4 +150,32 @@ Go back to your web browser and you may see at last authentication reports
 if your fail2ban service is configured to monitor the ssh service on the
 different nodes.
 
-## [How to add fail2ban services to suspicious groups : auth, mail, phone, etc.](SETUP_SERVICES.md)
+## How to add fail2ban services to suspicious threat groups
+
+There is a small peace of code you will have to maintain in the index.html
+frontend file in order to associate fail2ban services to suspicious threat
+groups.
+
+The d.service var contain the fail2ban service name, you can use either :
+
+d.service ==
+
+or
+
+d.service.include(string)
+
+to make your check and then return the right threat group image :
+
+return('img/service-threat.png')
+
+Here is the native peace of code included in your index.html :
+
+.attr("xlink:href", function(d) {
+                     if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
+                     else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
+                     else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
+                     else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
+                     else { return('img/unknown-threat.png'); }
+                   })
+
