@@ -29,7 +29,9 @@ Backend processors may respect the following field order to display data :
 
 	host,ip,service,occurences,country,region,city,lat,lon,timelog
 
-timelog is raw HTML data with <br/> as value separator.
+timelog is raw HTML data, use as value separator :
+
+	<br/>
 
 ## Timelined csv tree
 
