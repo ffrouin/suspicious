@@ -36,8 +36,13 @@ while(<FD>) {
   next if (/^[;#]/);
   if (/^([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]*$/) {
     ($host,$coll,$proc,$tag,$log) = ($1,$2,$3,$4,$5);
-    logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $host:$log logs/$tag.$proc.log");
-    system(COLLECTOR::build_cmd($coll)." $host:$log logs/$tag.$proc.log");
+    if ($coll eq 'local') {
+      logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $log logs/$tag.$proc.log");
+      system(COLLECTOR::build_cmd($coll)." $log logs/$tag.$proc.log");
+    } else {
+      logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $host:$log logs/$tag.$proc.log");
+      system(COLLECTOR::build_cmd($coll)." $host:$log logs/$tag.$proc.log");
+    }
     logMsg('INFO','processor',"cat logs/$tag.$proc.log | processors/$proc.pl $tag $hist_dir >> $csv_output");
     system("cat logs/$tag.$proc.log | processors/$proc.pl $tag $hist_dir >> $csv_output");
     logMsg('INFO','clean    ',"unlink logs/$tag.$proc.log");
