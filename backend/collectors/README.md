@@ -4,7 +4,7 @@ IT Threats GeoDashboard
 
 # Backend collectors
 
-Collectors are used to help suspicious backend to build command system
+Collectors are used to help suspicious backend to build a system command
 in order to collect logs.
 
 ## How does it works
