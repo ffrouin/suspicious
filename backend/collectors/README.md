@@ -19,8 +19,7 @@ suspicious.pl script in order to add an elsif condition :
 
 	if ($coll eq 'myCollectorName') {
 		logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." here build your stuff using $host,$coll,$proc,$tag,$log from backend.conf");
-		system(COLLECTOR::build_cmd($coll)." here
-build your stuff using $host,$coll,$proc,$tag,$log from backend.conf");
+		system(COLLECTOR::build_cmd($coll)." here build your stuff using $host,$coll,$proc,$tag,$log from backend.conf");
 	}
 
 # local collector
