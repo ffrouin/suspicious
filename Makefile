@@ -1,5 +1,5 @@
 check:
-	whereis gunzip wget geoiplookup grep
+	whereis gunzip wget geoiplookup grep perl
 
 install:
 	cp -r frontend $(SITE_PATH)/
