@@ -64,7 +64,7 @@ sudo apt-get install wget
 
 sudo apt-get install gunzip
 
-Our Makefile provide maxmind geoip deployment feature if you use "maxmind" as
+Our Makefile provides maxmind geoip deployment feature if you use "maxmind" as
 arg. Libs will be deployed in /usr/lib/maxmind. If you change this path,
 please update backend/collectors/geoiplookup.conf file in order suspicious
 to use your path instead of /usr/lib/maxmind.
