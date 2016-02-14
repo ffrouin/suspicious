@@ -30,7 +30,8 @@ if you try to deploy it on Windows.
 ## Frontend
 
   * web server : [nginx](http://nginx.org), [lighttpd](http://www.lighttpd.net) will serve our static files to end-users internet browsers
-  * [d3js](http://d3js.org) : this technology will be used to build the Suspicious GeoDashboard user interface
+  * [d3js](http://d3js.org) : this technology will be used to build the Suspicious GeoDashboard user interface, espacialy for its geographical library
+  * html/css : user interface
 
 # [How to deploy Suspicious GeoDashboard](INSTALL.md)
 
