@@ -38,7 +38,7 @@ timelog is raw HTML data, use as value separator :
 Backend processors, to enable threat timeline browsing, needs to keep up to
 date a csv file tree working as the following :
 
-frontend/db/<year>/<month>/<day>/suspicious_<hour>h<min>.csv
+	frontend/db/<year>/<month>/<day>/suspicious_<hour>h<min>.csv
 
 There is one file per hour, each of these files contains threat activity
 report over this time period.
