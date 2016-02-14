@@ -1,7 +1,5 @@
 check:
-	whereis wget
-	whereis gunzip
-	whereis geoiplookup
+	whereis gunzip wget geoiplookup grep
 
 install:
 	cp -r frontend $(SITE_PATH)/
