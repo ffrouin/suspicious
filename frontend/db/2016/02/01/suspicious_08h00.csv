@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,195.154.237.49,cgpro-sip-invite,1,KP,P'yongyang-si,Pyongyang,39.019402,125.754700,2016-02-01 08:02:10
+ns1,23.239.65.82,cgpro-sip-invite,1,US,unknown,unknown,38.000000,-97.000000,2016-02-01 08:43:20
+ns2,40.78.109.9,ssh,1,US,California,San Francisco,37.774899,-122.419403,2016-02-01 08:49:31

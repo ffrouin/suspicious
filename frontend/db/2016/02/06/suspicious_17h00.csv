@@ -1,0 +1,8 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,122.116.240.58,cgpro-smtp,1,TW,unknown,unknown,23.500000,121.000000,2016-02-06 17:01:53
+ns1,173.242.117.177,cgpro-sip-invite,1,US,Pennsylvania,Clarks Summit,41.448601,-75.727997,2016-02-06 17:02:01
+ns1,151.236.63.183,cgpro-sip-100,1,GB,unknown,unknown,51.500000,-0.130000,2016-02-06 17:17:24
+ns1,185.24.104.13,cgpro-smtp,1,IT,unknown,unknown,42.833302,12.833300,2016-02-06 17:26:17
+ns1,5.79.69.68,cgpro-sip-invite,4,NL,Noord-Holland,Amsterdam,52.374001,4.889700,2016-02-06 17:29:46
+ns1,69.64.61.75,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-06 17:47:17
+ns1,185.24.104.13,cgpro-smtp,2,IT,unknown,unknown,42.833302,12.833300,2016-02-06 17:57:09

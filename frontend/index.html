@@ -350,12 +350,12 @@ function load_threats(csvthreat) {
                    .append("image")
                    .attr("class","banned_ip")
                    .attr("xlink:href", function(d) { 
-                     if (d.service.includes('recidive')||d.occurences>=10) { return('hacker-threat.png'); }
-                     else if (d.service == 'ssh') { return('ssh-threat.png'); }
-                     else if (d.service.includes('cgpro-sip')) { return('sip-threat.png'); }
-                     else if (d.service.includes('cgpro-smtp')) { return('mail-threat.png'); }
-                     else if (d.service.includes('-wp')) { return('wordpress-threat.png'); }
-                     else { return('unknown-threat.png'); }
+                     if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
+                     else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
+                     else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
+                     else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
+                     else { return('img/unknown-threat.png'); }
                    })
                    .attr("x", function(d) {
                      if (d.occurences>5) { return(projection([d.lon, d.lat])[0] - 3); }

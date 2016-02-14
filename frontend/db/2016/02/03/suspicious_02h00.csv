@@ -1,0 +1,8 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,85.114.132.42,cgpro-sip-invite,3,DE,unknown,unknown,51.000000,9.000000,2016-02-03 02:01:10
+ns1,66.194.155.194,cgpro-smtp,10,US,Tennessee,Collierville,35.091099,-89.651001,2016-02-03 02:06:10
+ns1,66.194.155.194,recidive,3,US,Tennessee,Collierville,35.091099,-89.651001,2016-02-03 02:06:12
+ns1,209.126.102.190,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-03 02:09:08
+ns1,123.59.55.83,ssh,5,CN,Beijing,Beijing,39.928902,116.388298,2016-02-03 02:12:54
+ns1,123.59.55.83,recidive,1,CN,Beijing,Beijing,39.928902,116.388298,2016-02-03 02:12:57
+ns2,183.3.202.101,ssh,3,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-03 02:55:21

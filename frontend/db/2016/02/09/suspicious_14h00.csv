@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns3,104.43.13.64,ssh,2,US,Washington,Redmond,47.680099,-122.120598,2016-02-09 14:36:43
+ns3,185.86.82.123,ssh,5,TR,Bursa,Bursa,40.191700,29.061100,2016-02-09 14:57:36
+ns3,185.86.82.123,recidive,1,TR,Bursa,Bursa,40.191700,29.061100,2016-02-09 14:57:37

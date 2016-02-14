@@ -1,0 +1,7 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,125.88.177.87,ssh,1,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-06 18:20:53
+ns1,23.239.66.99,cgpro-sip-100,6,US,unknown,unknown,38.000000,-97.000000,2016-02-06 18:44:04
+ns1,212.159.61.123,ssh,1,GB,unknown,unknown,51.500000,-0.130000,2016-02-06 18:56:37
+ns2,183.3.202.113,ssh,2,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-06 18:13:22
+ns2,37.72.181.131,ssh,1,RU,Krasnodar,Kopeysk,55.117199,61.628201,2016-02-06 18:42:40
+ns2,37.72.181.131,ssh,2,RU,Krasnodar,Kopeysk,55.117199,61.628201,2016-02-06 18:53:48

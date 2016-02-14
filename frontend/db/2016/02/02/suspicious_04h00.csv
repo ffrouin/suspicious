@@ -1,0 +1,5 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,199.189.86.29,cgpro-sip-100,2,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-02 04:12:21
+ns1,82.236.164.192,ssh,1,FR,Champagne-Ardenne,Pierry,49.020199,3.940700,2016-02-02 04:16:02
+ns1,63.141.238.58,cgpro-sip-100,2,US,Missouri,Kansas City,39.147202,-94.573502,2016-02-02 04:22:54
+ns1,208.73.206.244,cgpro-sip-100,2,US,New Jersey,Secaucus,40.780102,-74.063301,2016-02-02 04:39:12

@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,69.4.81.178,cgpro-sip-100,1,US,New York,Buffalo,42.888401,-78.876099,2016-02-05 10:26:41
+ns1,221.194.57.246,ssh,14,CN,Hebei,Hebei,39.889702,115.275002,2016-02-05 10:57:05
+ns2,181.112.229.30,ssh,1,EC,Pichincha,Quito,-0.216700,-78.500000,2016-02-05 10:08:55

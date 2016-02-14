@@ -1,0 +1,10 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,5.56.58.118,cgpro-smtp,1,ES,unknown,unknown,40.400002,-3.683300,2016-02-04 02:01:57
+ns1,199.168.137.195,cgpro-sip-100,1,US,Pennsylvania,Clarks Summit,41.448601,-75.727997,2016-02-04 02:06:17
+ns1,85.113.212.211,ssh,1,RU,Kostroma,Kostroma,57.770802,40.934399,2016-02-04 02:06:48
+ns1,66.190.127.102,cgpro-smtp,15,US,Alabama,Birmingham,33.420101,-86.786697,2016-02-04 02:10:08
+ns1,66.190.127.102,recidive,5,US,Alabama,Birmingham,33.420101,-86.786697,2016-02-04 02:10:11
+ns1,209.126.122.36,cgpro-sip-invite,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-04 02:27:27
+ns1,173.224.117.161,cgpro-sip-100,2,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-04 02:42:37
+ns1,5.56.58.118,cgpro-smtp,2,ES,unknown,unknown,40.400002,-3.683300,2016-02-04 02:43:07
+ns2,40.76.29.35,ssh,1,US,District of Columbia,Washington,38.895100,-77.036400,2016-02-04 02:17:06

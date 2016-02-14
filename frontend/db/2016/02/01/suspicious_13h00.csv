@@ -1,0 +1,3 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,23.101.134.43,cgpro-sip-invite,1,US,District of Columbia,Washington,38.895100,-77.036400,2016-02-01 13:32:40
+ns1,209.126.110.253,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-01 13:43:57

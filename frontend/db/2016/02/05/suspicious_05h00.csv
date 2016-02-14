@@ -1,0 +1,5 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,108.175.8.193,cgpro-sip-100,1,US,Pennsylvania,Wayne,40.054798,-75.408302,2016-02-05 05:41:04
+ns1,82.231.36.60,ssh,1,FR,Alsace,Schiltigheim,48.607498,7.749300,2016-02-05 05:41:20
+ns1,5.79.69.79,cgpro-sip-invite,1,NL,Noord-Holland,Amsterdam,52.374001,4.889700,2016-02-05 05:48:00
+ns2,199.108.166.115,ssh,1,US,Iowa,Des Moines,41.610699,-93.550598,2016-02-05 05:40:32

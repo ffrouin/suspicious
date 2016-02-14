@@ -1,0 +1,8 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,118.102.202.131,cgpro-smtp,1,IN,Maharashtra,Pune,18.533300,73.866699,2016-01-31 21:21:24
+ns1,118.102.202.131,cgpro-smtp,2,IN,Maharashtra,Pune,18.533300,73.866699,2016-01-31 21:31:33
+ns1,92.88.255.55,cgpro-smtp,5,FR,unknown,unknown,48.860001,2.350000,2016-01-31 21:38:41
+ns1,92.88.255.55,recidive,1,FR,unknown,unknown,48.860001,2.350000,2016-01-31 21:38:43
+ns1,118.102.202.131,cgpro-smtp,3,IN,Maharashtra,Pune,18.533300,73.866699,2016-01-31 21:41:41
+ns1,118.102.202.131,cgpro-smtp,4,IN,Maharashtra,Pune,18.533300,73.866699,2016-01-31 21:51:49
+ns1,188.138.41.149,cgpro-sip-100,1,DE,unknown,unknown,51.000000,9.000000,2016-01-31 21:56:15

@@ -1,0 +1,5 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,66.190.127.102,cgpro-smtp,10,US,Alabama,Birmingham,33.420101,-86.786697,2016-02-02 02:04:50
+ns1,66.190.127.102,recidive,3,US,Alabama,Birmingham,33.420101,-86.786697,2016-02-02 02:04:52
+ns1,85.114.132.42,cgpro-sip-invite,2,DE,unknown,unknown,51.000000,9.000000,2016-02-02 02:32:57
+ns1,212.83.188.161,cgpro-sip-100,1,FR,unknown,unknown,48.860001,2.350000,2016-02-02 02:44:43
