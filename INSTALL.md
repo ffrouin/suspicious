@@ -149,3 +149,5 @@ containing timelined suspicious csv files.
 Go back to your web browser and you may see at last authentication reports
 if your fail2ban service is configured to monitor the ssh service on the
 different nodes.
+
+## [How to add fail2ban services to suspicious groups : auth, mail, phone, etc.](SETUP_SERVICES.md)
