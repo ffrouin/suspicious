@@ -28,7 +28,7 @@ For any local files, we won't have any "node" args as we don't want to
 duplicate a local file, a link would be better, so it was required to have
 a specific command build instructions for this :
 
-	cmd [cmd-args] node:src dst
+	cmd [cmd-args] src dst
 
 	ln -s src dst
 
