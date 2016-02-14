@@ -7,7 +7,7 @@ IT Threats GeoDashboard
 Collectors are used to help suspicious backend to build a system command
 in order to collect logs.
 
-## How does it works
+## How does it work ?
 
 By default suspicious.pl expect any system command to run as the
 following in order to retrieve logs :
