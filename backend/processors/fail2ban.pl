@@ -1,4 +1,11 @@
 #!/usr/bin/perl -w
+#
+# Script:  fail2ban.pl
+# Object:  Used to format fail2ban logs into csv
+#
+# Date:    Sun Feb 14 08:18:52 CET 2016
+# Author:  freddy@linuxtribe.fr
+
 
 use strict;
 use lib 'lib/';
