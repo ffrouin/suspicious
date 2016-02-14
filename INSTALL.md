@@ -158,19 +158,19 @@ groups.
 
 The d.service var contain the fail2ban service name, you can use either :
 
-d.service ==
+	d.service ==
 
 or
 
-d.service.include(string)
+	d.service.include(string)
 
 to make your check and then return the right threat group image :
 
-return('img/service-threat.png')
+	return('img/service-threat.png')
 
 Here is the native peace of code included in your index.html :
 
-.attr("xlink:href", function(d) {
+	.attr("xlink:href", function(d) {
 
                      if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
 
