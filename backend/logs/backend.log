@@ -1,9 +1,0 @@
-Sun Feb 14 09:09:29 2016	INFO	[collector]	/usr/bin/scp root@ns1:/var/log/fail2ban.log.1 logs/ns1.fail2ban.log
-Sun Feb 14 09:09:31 2016	INFO	[processor]	cat logs/ns1.fail2ban.log | processors/fail2ban.pl ns1 ../frontend/db >> ../frontend/banned_ip.csv
-Sun Feb 14 09:09:35 2016	INFO	[clean    ]	unlink logs/ns1.fail2ban.log
-Sun Feb 14 09:09:35 2016	INFO	[collector]	/usr/bin/scp root@ns2:/var/log/fail2ban.log.1 logs/ns2.fail2ban.log
-Sun Feb 14 09:09:36 2016	INFO	[processor]	cat logs/ns2.fail2ban.log | processors/fail2ban.pl ns2 ../frontend/db >> ../frontend/banned_ip.csv
-Sun Feb 14 09:09:36 2016	INFO	[clean    ]	unlink logs/ns2.fail2ban.log
-Sun Feb 14 09:09:36 2016	INFO	[collector]	/usr/bin/scp root@ns3:/var/log/fail2ban.log.1 logs/ns3.fail2ban.log
-Sun Feb 14 09:09:37 2016	INFO	[processor]	cat logs/ns3.fail2ban.log | processors/fail2ban.pl ns3 ../frontend/db >> ../frontend/banned_ip.csv
-Sun Feb 14 09:09:38 2016	INFO	[clean    ]	unlink logs/ns3.fail2ban.log
