@@ -18,7 +18,7 @@ If your command does not support this syntax, you may edit the
 suspicious.pl script in order to add an elsif condition :
 
 	if ($coll eq 'myCollectorName') {
-		logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." here build your stuff using $host,$coll,$proc,$tag,$log from backend.conf");
+		logMsg('INFO','myCcollectorName',COLLECTOR::build_cmd($coll)." here build your stuff using $host,$coll,$proc,$tag,$log from backend.conf");
 		system(COLLECTOR::build_cmd($coll)." here build your stuff using $host,$coll,$proc,$tag,$log from backend.conf");
 	}
 
