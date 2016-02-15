@@ -39,7 +39,7 @@ to use your path instead of /usr/lib/maxmind.
 There's many way to add crontab entries : users crontab, /etc/cron* files. Here are
 entries you may use to update your local GeoIP database :
 
-	5 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoLiteCity.dat.gz
+	5 4 10 * * wget -O /path/to/my/favorite/lib/dir/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f /path/to/my/favorite/lib/dir/GeoLiteCity.dat.gz
 
 #### Run a geoiplookup test with your IP
 
