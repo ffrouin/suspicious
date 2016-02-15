@@ -21,7 +21,7 @@ if you try to deploy it on Windows.
 
 ## Backend
 
-  * [fail2ban](http://www.fail2ban.org) : used to detect, log and act when malicious activity is detected
+  * [fail2ban](http://www.fail2ban.org) : used to detect, log and act when malicious activity occurs
   * [MaxMind GeoIP](http://www.maxmind.com) : used to get geographic IP details : latitude, longitude, city, region, country
   * perl : used to process strings with perl REGEXP in order to format the data for the frontend,
   this script produces csv files
