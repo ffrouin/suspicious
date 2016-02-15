@@ -46,3 +46,9 @@ report over this time period.
 CSV fields are the same as for main report on standard output :
 
 	host,ip,service,occurences,country,region,city,lat,lon,timelog
+
+## Backend processor template
+
+In order to help the community to provide processors for other engines
+like or not like fail2ban, you'll find the backend/processors/template.pl
+script that have the skeleton to allow easy integration.
