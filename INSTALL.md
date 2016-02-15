@@ -4,38 +4,6 @@ IT Threats GeoDashboard
 
 ## How to deploy Suspicious
 
-### Architecture
-
-#### Frontend
-
-Suspicious may be deployed within a web instance :
-
-/var/www/suspicious.yourdomain.com/frontend (htdocs)
-
-/var/www/suspicious.yourdomain.com/frontend/index.html (d3js)
-
-/var/www/suspicious.yourdomain.com/frontend/img (ui ressources)
-
-/var/www/suspicious.yourdomain.com/frontend/js (ui ressources)
-
-/var/www/suspicious.yourdomain.com/frontend/geo (ui ressources)
-
-/var/www/suspicious.yourdomain.com/frontend/db (timelined csv db)
-
-#### Backend
-
-/var/www/suspicious.yourdomain.com/backend
-
-/var/www/suspicious.yourdomain.com/backend/suspicious.pl (main script)
-
-/var/www/suspicious.yourdomain.com/backend/backend.conf (main config)
-
-/var/www/suspicious.yourdomain.com/backend/collectors (collectors config)
-
-/var/www/suspicious.yourdomain.com/backend/processors (processors scripts)
-
-/var/www/suspicious.yourdomain.com/backend/logs (backend working dir)
-
 ### Check your system binaries
 
 Suspicious uses system cmd for internal processings. Just challenge your
