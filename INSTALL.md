@@ -20,7 +20,7 @@ Suspicious may be deployed within a web instance :
 
 /var/www/suspicious.yourdomain.com/frontend/geo (ui ressources)
 
-/var/www/suspicious.yourdomain.com/frontend/db (timeline csv db)
+/var/www/suspicious.yourdomain.com/frontend/db (timelined csv db)
 
 #### Backend
 
@@ -39,7 +39,7 @@ Suspicious may be deployed within a web instance :
 ### Check your system binaries
 
 Suspicious uses system cmd for internal processings. Just challenge your
-system using our Makefile with "check" arg, it may report to you missing
+system using our Makefile with the "check" arg, it may report to you missing
 commands :
 
 	make check
@@ -49,6 +49,7 @@ commands :
 	wget: /usr/bin/wget /usr/bin/X11/wget /usr/share/man/man1/wget.1.gz
 	geoiplookup: /usr/bin/geoiplookup /usr/bin/X11/geoiplookup /usr/share/man/man1/geoiplookup.1.gz
 	grep: /bin/grep /usr/share/man/man1/grep.1.gz
+	perl: /usr/bin/perl /etc/perl /usr/lib/perl /usr/bin/X11/perl /usr/local/lib/perl /usr/share/perl /usr/share/man/man1/perl.1.gz
 
 ### Deploy MaxMind GeoIP
 
@@ -66,9 +67,7 @@ There's many way to add crontab entries : users crontab, /etc/cron* files. Here 
 entries you may use to update your local GeoIP database :
 
 	0 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoIP.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoIP.dat.gz
-	
 	5 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoLiteCity.dat.gz
-	
 	10 4 10 * * wget -O */path/to/my/favorite/lib/dir*/GeoIPASNum.dat.gz http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz && gunzip -f */path/to/my/favorite/lib/dir*/GeoIPASNum.dat.gz
 
 #### Run a geoiplookup test with your IP
@@ -79,7 +78,7 @@ If you don't have geoiplookup command available on your system, you may try this
 
 in a terminal, use the following command to check your GeoIP Database is working :
 
-	/usr/bin/geoiplookup -f */path/to/my/favorite/lib/dir*/GeoLiteCity.dat *ip*
+	/usr/bin/geoiplookup -f /path/to/my/favorite/lib/dir/GeoLiteCity.dat <ip>
 
 ### Get Suspicious
 
@@ -89,15 +88,25 @@ in a terminal, use the following command to check your GeoIP Database is working
 
 ### Instanciate a web service with nginx, lighttpd
 
-End users should not access the backend, this directory can't be a child directory
-of your web root directory (htdocs). Backend and Frontend directory may be in the
-same directory while Frontend directory will be root directory of your web instance.
+#### Everything on the same system
+
+End users should not access the backend, this directory won't be a child directory
+of your web root directory (htdocs). Backend and Frontend directory may stand in the
+same directory while Frontend directory will be the root directory of your web instance.
+
+#### Frontend/Backend Architecture
+
+It would be possible to define an architecture with a frontend and a backend server :
+  * if data duplication is not an issue for you, a simple RDIST (differential file sync
+over ssh) would allow you to plan frontend update,
+  * an NFS mount query from the backend server should allow to mount the frontend/db
+directory with read/write access to enable backend processors to update the frontend.
 
 #### Make a test to check frontend is correctly working
 
 Our deployment release content data from our system that should display
 an initial report if you access your frontend before you launch any backend
-scripts.
+script.
 
 ### Configure the backend
 
@@ -107,16 +116,20 @@ the data for the frontend.
 
 Configuration is very simple :
 
-	;node	collector	processor	tag		file
-	root@ns1	scp		fail2ban	ns1		/var/log/fail2ban.log.1
-	root@ns2	scp		fail2ban	ns2		/var/log/fail2ban.log.1
-	root@ns3	scp		fail2ban	ns3		/var/log/fail2ban.log.1
+	;node		collector	processor	tag		file
+	adm@ns1		scp		fail2ban	ns1		/var/log/fail2ban.log.1
+	adm@ns2		scp		fail2ban	ns2		/var/log/fail2ban.log.1
+	adm@ns3		scp		fail2ban	ns3		/var/log/fail2ban.log.1
 
 ### Launch backend processing
 
+The backend/suspicious.pl script will launch all processings to collect and format your data
+for the suspicious frontend. It will parse the backend/backend.conf file and will call defined
+collectors and processors.
+
 This application has been built entirely using relative links. It means in
-order the suspicious.pl script to work, you need to be in the backend
-directory. So to call it from cron, use this kind of command :
+order to launch properly the suspicious.pl script, you need to be in the backend
+directory. So to call it from cron, use this kind of call :
 
 	cd /path/to/backend && ./suspicious.pl
 
@@ -135,42 +148,53 @@ the backend.
 containing timelined suspicious csv files.
 
 Go back to your web browser and you may see at last authentication reports
-if your fail2ban service is configured to monitor the ssh service on the
+if your fail2ban service is configured to monitor the ssh service on your
 different nodes.
 
 ## How to add fail2ban services to suspicious threat groups
 
 There is a small peace of code you will have to maintain in the index.html
 frontend file in order to associate fail2ban services to suspicious threat
-groups.
+groups : mail, telephony, email, web, recidive.
+
+### Threat groups
+
+If you need to modify or adapt groups icons, groups name, update the
+following var in frontend/index.html :
+
+	var legendMap = [ { 'img/ssh-threat.png' : 'Authentication' },
+			  { 'img/sip-threat.png' : 'Telephony' },
+			  { 'img/mail-threat.png' : 'Email' },
+			  { 'img/wordpress-threat.png' : 'Web' },
+			  { 'img/hacker-threat.png' : 'Recidive' },
+			  { 'img/unknown-threat.png' : 'Uncommented' }
+			];
+
+### Threat loading from csv files
+
+Then, when suspicious will load threat from csv files, we'll have to check
+fail2ban service name (d.service) and return the right image to this threat.
 
 The d.service var contain the fail2ban service name, you can use either :
 
-	d.service ==
+	d.service == "<string>"
 
 or
 
-	d.service.include(string)
+	d.service.include("<string>")
 
-to make your check and then return the right threat group image :
+to make your check and then return the right threat group image to end-user UI :
 
 	return('img/service-threat.png')
 
-Here is the native peace of code included in your index.html :
+Here is the native peace of code included in your index.html you'll have to update :
 
 	.attr("xlink:href", function(d) {
-
                      if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
-
                      else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
-
                      else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
-
                      else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
-
                      else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
-
                      else { return('img/unknown-threat.png'); }
-
                    })
 
