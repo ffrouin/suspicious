@@ -6,8 +6,6 @@ IT Threats GeoDashboard
 
 ### Architecture
 
-#### Frontend
-
 Suspicious may be deployed within a web instance :
 
 /var/www/suspicious.yourdomain.com/frontend (htdocs)
@@ -38,13 +36,13 @@ over ssh) would allow you to plan frontend update,
   * an NFS mount query from the backend server should allow to mount the frontend/db
 directory with read/write access to enable backend processors to update the frontend.
 
-## How to add fail2ban services to suspicious threat groups
+### How to add fail2ban services to suspicious threat groups
 
 There is a small peace of code you will have to maintain in the index.html
 frontend file in order to associate fail2ban services to suspicious threat
 groups : mail, telephony, email, web, recidive.
 
-### Threat groups
+#### Threat groups
 
 If you need to modify or adapt groups icons, groups name, update the
 following var in frontend/index.html :
@@ -57,7 +55,7 @@ following var in frontend/index.html :
 			  { 'img/unknown-threat.png' : 'Uncommented' }
 			];
 
-### Threat loading from csv files
+#### Threat loading from csv files
 
 Then, when suspicious will load threat from csv files, we'll have to check
 fail2ban service name (d.service) and return the right image to this threat.

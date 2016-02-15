@@ -2,6 +2,20 @@
 
 IT Threats GeoDashboard
 
+## Architecture
+
+/var/www/suspicious.yourdomain.com/backend
+
+/var/www/suspicious.yourdomain.com/backend/suspicious.pl (main script)
+
+/var/www/suspicious.yourdomain.com/backend/backend.conf (main config)
+
+/var/www/suspicious.yourdomain.com/backend/collectors (collectors config)
+
+/var/www/suspicious.yourdomain.com/backend/processors (processors scripts)
+
+/var/www/suspicious.yourdomain.com/backend/logs (backend working dir)
+
 ### Configure the backend
 
 You need to configure the backend/backend.conf file in order to list
