@@ -4,6 +4,11 @@ IT Threats GeoDashboard
 
 ## How to deploy Suspicious
 
+### Get Suspicious
+
+	git clone https://github.com/ffrouin/suspicious
+	cd suspicious
+
 ### Check your system binaries
 
 Suspicious uses system cmd for internal processings. Just challenge your
@@ -48,11 +53,10 @@ in a terminal, use the following command to check your GeoIP Database is working
 
 	/usr/bin/geoiplookup -f /path/to/my/favorite/lib/dir/GeoLiteCity.dat <ip>
 
-### Get Suspicious
+### Install Suspicious
 
-	git clone https://github.com/ffrouin/suspicious
-	cd suspicious
-	make install SITE_PATH=/var/www/suspicious.yourdomain.com
+	export SITE_PATH=/var/www/suspicious.yourdomain.com
+	make install
 
 ### Instanciate a web service with nginx, lighttpd
 
