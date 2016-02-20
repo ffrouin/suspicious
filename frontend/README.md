@@ -83,3 +83,12 @@ Here is the native peace of code included in your index.html you'll have to upda
                      else { return('img/unknown-threat.png'); }
                    })
 
+### Use the Web Visitor Dashboard instead of the Suspicious one
+
+If you'd like to use this tool to simply report web activity over time
+you may go to your frontend directory and use the following command :
+
+	mv index.lighttpd.html index.html
+
+It's done, just refresh your Internet Browser cache and you'll be able
+to load it.
