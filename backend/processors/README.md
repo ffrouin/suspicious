@@ -5,7 +5,7 @@ IT Threats GeoDashboard
 # Backend processors
 
 Backend processors scripts have to format the data for the frontend. Actually
-suspicious support only a fail2ban processor script.
+suspicious supports actually two processors : lighttpd & fail2ban.
 
 ## Launch requirements
 
@@ -52,3 +52,33 @@ CSV fields are the same as for main report on standard output :
 In order to help the community to provide processors for other engines
 like or not like fail2ban, you'll find the backend/processors/template.pl
 script that have the skeleton to allow easy integration.
+
+## Fail2ban processor
+
+The fail2ban processor will parse your fail2ban logs and extract data from
+it. There's no settings to update if you are using standard fail2ban log files.
+
+## Lighttpd processor
+
+This processor works with web log files. It has been tested with lighttpd but
+may be updated easily for other web server as apache2 or nginx.
+
+You may update this processor script in order to configure the excluded pattern
+you don't want to report and maybe the HTTP code status you want to track.
+You may want look for 4xx or 5xx return codes to follow suspicious web
+activity :
+
+	my @excludedPatterns = (
+					'\\.xml$',
+					'\\.txt$',
+					'\\.php$',
+					'feed',
+					'wp-'
+				);
+
+	my @trackedStatusCodes = (
+					'4\d{2}',
+					'5\d{2}'
+				);
+
+

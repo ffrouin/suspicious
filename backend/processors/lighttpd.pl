@@ -30,12 +30,46 @@ my %month_num = ( 'Jan' => '01',
 		  'Dec' => '12'
 		);
 
+my @excludedPatterns = (
+		'\\.xml$',
+		'\\.txt$',
+		'\\.php$',
+		'feed',
+		'wp-'
+		);
+
+my @trackedStatusCodes = (
+		'4\d{2}',
+                '5\d{2}'
+		);
+
+sub isExcluded {
+  my $url = $_[0];
+
+  foreach (@excludedPatterns) {
+    return(1) if ($url =~ /$_/);
+  }
+  return(0);
+}
+
+sub isTracked {
+  my $s = $_[0];
+
+  foreach (@trackedStatusCodes) {
+    return(1) if ($s =~ /^$_$/);
+  }
+  return(0);
+}
+
 my ($country,$region,$city,$lon,$lat);
 
 while(<STDIN>) {
-    if (/^([\d\.]+)\s(\S+)\s-\s\[(\d+)\/(\w+)\/(\d+):(\d+):(\d+):(\d+)\s.+\"GET\s(\/[\w\-\.]*\/?).+\"\s200\s.+$/) {
-	my ($ip,$service,$day,$month,$year,$hour,$min,$sec)= ($1,$2.$9,$3,$month_num{$4},$5,$6,$7,$8);
+    if (/^([\d\.]+)\s(\S+)\s-\s\[(\d+)\/(\w+)\/(2016):(\d+):(\d+):(\d+)\s.+\"GET\s(\/[\w\-\.]*\/?).+\"\s(\d+)\s.+$/) {
+	my ($ip,$service,$day,$month,$year,$hour,$min,$sec,$status)= ($1,$2.$9,$3,$month_num{$4},$5,$6,$7,$8,$10);
         my $timelog = "$day/$month/$year $hour:$min:$sec";
+
+	next unless(isTracked($status));
+	next if (isExcluded($service));
 
 # MAIN STATS UPDATE
 
