@@ -32,15 +32,16 @@ my %month_num = ( 'Jan' => '01',
 
 my @excludedPatterns = (
 		'\\.xml$',
+		'\\.ico$',
 		'\\.txt$',
+		'\\.ics$',
 		'\\.php$',
 		'feed',
 		'wp-'
 		);
 
 my @trackedStatusCodes = (
-		'4\d{2}',
-                '5\d{2}'
+                '200'
 		);
 
 sub isExcluded {
@@ -68,6 +69,12 @@ while(<STDIN>) {
 	my ($ip,$service,$day,$month,$year,$hour,$min,$sec,$status)= ($1,$2.$9,$3,$month_num{$4},$5,$6,$7,$8,$10);
         my $timelog = "$day/$month/$year $hour:$min:$sec";
 
+	next if ($ip eq '78.222.26.68');
+	next if ($ip eq '78.222.201.134');
+	next if ($ip eq '195.154.110.178');
+
+	next if ($service !~ /^www\.latelieramusique\.fr/);
+
 	next unless(isTracked($status));
 	next if (isExcluded($service));
 
@@ -85,13 +92,13 @@ while(<STDIN>) {
 
 # TIMELINED CSV TREE UPDATE
 
-       unless(-f "$hist_dir/$year/$month/$day/suspicious_$hour"."h00.csv" ) {
-         system("mkdir -p \"$hist_dir/$year/$month/$day\"");
-         system("echo \"host,ip,service,occurences,country,region,city,lat,lon,timelog\" > \"$hist_dir/$year/$month/$day/suspicious_$hour"."h00.csv\"");
+       unless(-f "$hist_dir/$year/$month/$day"."_visitors.csv" ) {
+         system("mkdir -p \"$hist_dir/$year/$month\"");
+         system("echo \"host,ip,service,occurences,country,region,city,lat,lon,timelog\" > \"$hist_dir/$year/$month/$day"."_visitors.csv\"");
        }
-       unless(check_log("$hist_dir/$year/$month/$day/suspicious_$hour"."h00.csv",$ip,$tag,$service,$timelog)) {
+       unless(check_log("$hist_dir/$year/$month/$day"."_visitors.csv",$ip,$tag,$service,$timelog)) {
          ($country,$region,$city,$lat,$lon) = get_geodata($ip);
-         system("echo \"$tag,$ip,$service,$stats{$ip}{$service}{'occurences'},$country,$region,$city,$lat,$lon,$timelog\" >> \"$hist_dir/$year/$month/$day/suspicious_$hour"."h00.csv\"");
+         system("echo \"$tag,$ip,$service,$stats{$ip}{$service}{'occurences'},$country,$region,$city,$lat,$lon,$timelog\" >> \"$hist_dir/$year/$month/$day"."_visitors.csv\"");
        }
     }
 }

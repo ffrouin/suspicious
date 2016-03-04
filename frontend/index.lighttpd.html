@@ -107,7 +107,7 @@ div.infoPanel div.figure p {
   <div id="SDRevision"></div>
   <div id="SDCommand"></div>
   <div id="SDReport"></div>
-  <div id="SDLegend_disabled"></div>
+  <div id="SDLegend"></div>
 </div>
 <script>
 
@@ -157,8 +157,8 @@ var SD = d3.select("#suspiciousDashboard")
 //    .on("mouseover", function() { setcursor("default"); });
 
 var timelineSwitch = false;
-var formatTimeReport = d3.time.format("%d/%m/%Y - %H:00");
-var formatTimeDBPath = d3.time.format("db/%Y/%m/%d/suspicious_%Hh00.csv");
+var formatTimeReport = d3.time.format("%d/%m/%Y");
+var formatTimeDBPath = d3.time.format("db/%Y/%m/%d_visitors.csv");
 
 var currentDate = new Date;
 var currentReport = "home";
@@ -181,12 +181,12 @@ var commandMap = [ { 'img/cmd-home.png' : 'home' },
                    { 'img/cmd-time-forward.png' : 'timeline-forward' }
                  ];
 
-var legendMap = [ { 'img/ssh-threat.png' : 'Authentication' },
-                  { 'img/sip-threat.png' : 'Telephony' },
-                  { 'img/mail-threat.png' : 'Email' },
-                  { 'img/wordpress-threat.png' : 'Web' },
-                  { 'img/hacker-threat.png' : 'Recidive' },
-                  { 'img/unknown-threat.png' : 'Uncommented' }
+var legendMap = [ { 'img/web-accordion.png' : 'Rent Accordion' },
+                  { 'img/web-price.png' : 'Sell Accordion' },
+                  { 'img/web-repair.png' : 'Repair Accordion' },
+                  { 'img/web-lesson.png' : 'Music Lessons' },
+                  { 'img/web-broadcast.png' : 'Diffusion' },
+                  { 'img/web-bobbym.png' : 'Bobbym' }
                 ];
 
 SD.select("#SDTitle").text("Web visitor report");
@@ -212,16 +212,16 @@ SD.select("#SDCommand")
 						if(d3.map(d).values() == "regions") { regionsReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "services") { servicesReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "targets") { targetsReport(formatTimeDBPath(currentDate)); }
-						if(d3.map(d).values() == "timeline") { timelineSwitch = false; load_threats("banned_ip.csv"); }
-						if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-1); timelineReport(formatTimeDBPath(currentDate)); }
-						if(d3.map(d).values() == "timeline-forward") { dateMoveHours(+1); timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "timeline") { timelineSwitch = false; SDReport.html("Loading visitors..."); load_threats("banned_ip.csv"); }
+						if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-24); timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "timeline-forward") { dateMoveHours(+24); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "home") { welcome(); }
                                               }
                                              })
                .on("mouseover", function() { setcursor("pointer"); })
                .on("mouseout", function() { setcursor("default"); });
 
-SD.select("#SDLegend").append("h2").text("Threat Legend");
+SD.select("#SDLegend").append("h2").text("Visits Legend");
 SD.select("#SDLegend")
                .selectAll("legend")
                .data(legendMap).enter()
@@ -338,7 +338,7 @@ function ready(error, world, names) {
       .on("mouseover", function() { setcursor("pointer"); });
 
   // inform end-user everything's loaded
-  SDReport.html("Loading threats...");
+  SDReport.html("Loading visitors...");
   load_threats("banned_ip.csv");
 }
 
@@ -350,19 +350,32 @@ function load_threats(csvthreat) {
 		   .append("image")
 		   .attr("class","banned_ip")
                    .attr("xlink:href", function(d) {
-                     return('img/web-visitor.png');
+		     if (d.service.includes('vente-accordeon')) { return('img/web-price.png'); }
+                     else if (d.service.includes('location-accordeon')) { return('img/web-accordion.png'); }
+                     else if (d.service.includes('reparation-accordeon')) { return('img/web-repair.png'); }
+                     else if (d.service.includes('bobbym')) { return('img/web-bobbym.png'); }
+                     else if (d.service.includes('richardhertel')) { return('img/web-broadcast.png'); }
+                     else if (d.service.includes('excelsis')) { return('img/web-broadcast.png'); }
+                     else if (d.service.includes('magaligoimard')) { return('img/web-broadcast.png'); }
+                     else if (d.service.includes('yumikonakamura')) { return('img/web-broadcast.png'); }
+                     else if (d.service.includes('template')) { return('img/web-broadcast.png'); }
+                     else if (d.service.includes('contact')) { return('img/web-contacts.png'); }
+                     else if (d.service.includes('cours-de-musique')) { return('img/web-lesson.png'); }
+                     else if (d.service.includes('calendrier')) { return('img/web-calendar.png'); }
+
+                     else { return('img/web-visitor.png'); }
                    })
                    .attr("x", function(d) {
-                     return(projection([d.lon, d.lat])[0] - 0.5/2);
+                     return(projection([d.lon, d.lat])[0] - 2/2);
                    })
                    .attr("y", function(d) {
-                     return(projection([d.lon, d.lat])[1] - 0.5/2);
+                     return(projection([d.lon, d.lat])[1] - 2/2);
                    })
                    .attr("id", function(d) {
                      return(d.ip + "-" + d.service + "-" + d.occurences);
                    })
-		   .attr("width", function(d) { return(0.5); })
-                   .attr("height", function(d) { return(0.5); })
+		   .attr("width", function(d) { return(2); })
+                   .attr("height", function(d) { return(2); })
 		   .call(drag)
                    .on("mouseover", function(d) {      
                      setcursor("crosshair");
@@ -458,6 +471,7 @@ function timelineReport(csvthreat) {
    var nodes = svg.selectAll(".banned_ip").remove();
    nodes = [];
 
+   SDReport.html("Loading visitors...");
    load_threats(csvthreat);
 
    if(currentReport == "regions") { regionsReport(csvthreat); return(0); }
@@ -490,7 +504,7 @@ function updateInfoPanel(d) {
     + d.ip + "\" target=\"_blank\">" + d.ip + "</a>"
     + "<br/><b>Country :</b> " + d.country
     + "<br/><b>Region/City :</b> " + d.region + "/" + d.city 
-    + " (source : geoip)<br/>" + "<b>Service :</b> " + d.service
+    + " (source : geoip)<br/>" + "<b>Service :</b> " + "<a href=\"http://" + d.service +"\" target=\"_blank\">http://" + d.service + "</a>"
     + " (" + d.occurences + " occurences)<br/>"
     + "<br/><b>Timelog</b><br/>" + d.timelog
     );

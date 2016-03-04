@@ -35,3 +35,4 @@ if you try to deploy it on Windows.
 
 # [How to deploy Suspicious GeoDashboard](INSTALL.md)
 
+# Use suspicious for standard web statistic analysis : [demo](http://awstats.linuxtribe.fr/www.latelieramusique.fr/geowebstats)
