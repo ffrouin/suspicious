@@ -91,4 +91,5 @@ you may go to your frontend directory and use the following command :
 	mv index.lighttpd.html index.html
 
 It's done, just refresh your Internet Browser cache and you'll be able
-to load it.
+to load it : [demo](http://awstats.linuxtribe.fr/www.latelieramusique.fr/geowebstats)
+
