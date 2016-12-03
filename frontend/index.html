@@ -26,6 +26,34 @@ body {
   stroke: #58A282;
   stroke-width: .1px;
 }
+img.country-flag {
+  width: 30px;
+  height: 20px;
+}
+img.service {
+  width: 30px;
+  height: 30px;
+}
+#timeline-backward {
+  visibility: hidden;
+  width: 20px;
+  height: 20px;
+}
+#timeline-play {
+  visibility: hidden;
+  width: 20px;
+  height: 20px;
+}
+#timeline-pause {
+  visibility: hidden;
+  width: 20px;
+  height: 20px;
+}
+#timeline-forward {
+  visibility: hidden;
+  width: 20px;
+  height: 20px;
+}
 div.infoPanel {
   position: absolute;
   border-radius: 25px;
@@ -98,10 +126,10 @@ div.infoPanel div.figure p {
 }
 </style>
 <body>
-<script src="js/d3.v3.min.js"></script>
-<script src="js/topojson.v1.min.js"></script>
-<script src="js/queue.v1.min.js"></script>
-<script src="js/d3.geo.projection.v0.min.js"></script>
+<script src="d3.v3.min.js"></script>
+<script src="topojson.v1.min.js"></script>
+<script src="queue.v1.min.js"></script>
+<script src="d3.geo.projection.v0.min.js"></script>
 <div id="suspiciousDashboard">
   <div id="SDTitle"></div>
   <div id="SDRevision"></div>
@@ -157,6 +185,7 @@ var SD = d3.select("#suspiciousDashboard")
 //    .on("mouseover", function() { setcursor("default"); });
 
 var timelineSwitch = false;
+var timelinePauseSwitch;
 var formatTimeReport = d3.time.format("%d/%m/%Y - %H:00");
 var formatTimeDBPath = d3.time.format("db/%Y/%m/%d/suspicious_%Hh00.csv");
 
@@ -172,21 +201,42 @@ function dateMoveHours(d) {
 
 dateMoveDays(-7);
 
-var commandMap = [ { 'img/cmd-home.png' : 'home' },
-                   { 'img/cmd-region.png' : 'regions' },
-                   { 'img/cmd-services.png' : 'services' },
-                   { 'img/cmd-stats.png' : 'targets' },
-                   { 'img/cmd-time.png' : 'timeline' },
-                   { 'img/cmd-time-backward.png' : 'timeline-backward' },
-                   { 'img/cmd-time-forward.png' : 'timeline-forward' }
+function timelineControls(s) {
+   if (s == false) {
+	d3.select("#timeline-backward").style("visibility", "hidden");
+	d3.select("#timeline-play").style("visibility", "hidden");
+	d3.select("#timeline-pause").style("visibility", "hidden");
+	d3.select("#timeline-forward").style("visibility", "hidden");
+   } else {
+	d3.select("#timeline-backward").style("visibility", "visible");
+	d3.select("#timeline-play").style("visibility", "visible");
+	d3.select("#timeline-pause").style("visibility", "visible");
+	d3.select("#timeline-forward").style("visibility", "visible");
+   }
+}
+
+function timelinePlay() {
+	dateMoveHours(+1);
+	timelineReport(formatTimeDBPath(currentDate));
+}
+
+var commandMap = [ { 'cmd-home.png' : 'home' },
+                   { 'cmd-region.png' : 'regions' },
+                   { 'cmd-services.png' : 'services' },
+                   { 'cmd-stats.png' : 'targets' },
+                   { 'cmd-time.png' : 'timeline' }, 
+                   { 'cmd-time-backward.png' : 'timeline-backward' },
+                   { 'cmd-time-play.png' : 'timeline-play' },
+                   { 'cmd-time-pause.png' : 'timeline-pause' },
+                   { 'cmd-time-forward.png' : 'timeline-forward' }
                  ];
 
-var legendMap = [ { 'img/ssh-threat.png' : 'Authentication' },
-                  { 'img/sip-threat.png' : 'Telephony' },
-                  { 'img/mail-threat.png' : 'Email' },
-                  { 'img/wordpress-threat.png' : 'Web' },
-                  { 'img/hacker-threat.png' : 'Recidive' },
-                  { 'img/unknown-threat.png' : 'Uncommented' }
+var legendMap = [ { 'ssh-threat.png' : 'Authentication' },
+                  { 'sip-threat.png' : 'Telephony' },
+                  { 'mail-threat.png' : 'Email' },
+                  { 'wordpress-threat.png' : 'Web' },
+                  { 'hacker-threat.png' : 'Recidive' },
+                  { 'unknown-threat.png' : 'Uncommented' }
                 ];
 
 SD.select("#SDTitle").text("Linuxtribe Earth IT Threats");
@@ -201,19 +251,24 @@ SD.select("#SDCommand")
                .attr("alt",function(d) { return d3.map(d).values(); })
                .attr("width", 40)
                .attr("height", 40)
-               .on('mousedown', function(d) { 
+	       .attr("id", function(d) { return d3.map(d).values() })
+               .on('mousedown', function(d) { pauseFlag = 0;
 					      if (timelineSwitch == false) {
+						timelineControls(true);
 						if(d3.map(d).values() == "regions") { regionsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "services") { servicesReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "targets") { targetsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "timeline") { timelineSwitch = true; timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "home") { welcome(); }
                                               } else if (timelineSwitch == true) {
+						timelineControls(false);
 						if(d3.map(d).values() == "regions") { regionsReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "services") { servicesReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "targets") { targetsReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "timeline") { timelineSwitch = false; load_threats("banned_ip.csv"); }
 						if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-1); timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "timeline-play") { timelinePauseSwitch = setInterval(timelinePlay,500); }
+						if(d3.map(d).values() == "timeline-pause") { clearInterval(timelinePauseSwitch); timelineControls(true); }
 						if(d3.map(d).values() == "timeline-forward") { dateMoveHours(+1); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "home") { welcome(); }
                                               }
@@ -241,7 +296,7 @@ SD.select("#SDLegend").selectAll(".legend").each(
   }
 );
 
-SD.select("#SDRevision").html("Build v0.8 08/02/2016 - author: <a href=\"http://freddy.linuxtribe.fr\">freddy@linuxtribe.fr</a>");
+SD.select("#SDRevision").html("Build v0.9 02/12/2016 - author: <a href=\"http://freddy.linuxtribe.fr\">freddy@linuxtribe.fr</a>");
 
 var SDReport = SD.select("#SDReport");
 
@@ -254,7 +309,10 @@ var svg = d3.select("body").append("svg")
     .append("g")
        .call(d3.behavior.zoom().scaleExtent([1, 30]).on("zoom", zoom))
        .on("dblclick.zoom", null)
-    .append("g"); 
+    .append("g");
+
+svg.style("opacity", 0)
+    .transition().duration(200).style("opacity", 1);
 
 // init map
 svg.append("defs").append("path")
@@ -276,8 +334,8 @@ SDReport.html("Loading earth data...");
 
 // load geo ressources
 queue()
-   .defer(d3.json, 'geo/world-50m.json')
-   .defer(d3.tsv, 'geo/world-country-names.tsv')
+   .defer(d3.json, 'world-50m.json')
+   .defer(d3.tsv, 'world-country-names.tsv')
    .await(ready)
 
 function ready(error, world, names) {
@@ -327,7 +385,9 @@ function ready(error, world, names) {
         setcursor("pointer");
       })
       .attr('title', 'country-path')
-      .style("fill", "#3B8E6A");
+      .style("fill", "#3B8E6A")
+      .style("opacity", 0)
+      .transition().duration(200).style("opacity", 1);
 
   SDReport.html("Create world boundaries");
   // create world boundary
@@ -350,12 +410,13 @@ function load_threats(csvthreat) {
                    .append("image")
                    .attr("class","banned_ip")
                    .attr("xlink:href", function(d) { 
-                     if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
-                     else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
-                     else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
-                     else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
-                     else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
-                     else { return('img/unknown-threat.png'); }
+                     if (d.service.includes('recidive')||d.occurences>=10) { return('hacker-threat.png'); }
+                     else if (d.service == 'ssh') { return('ssh-threat.png'); }
+                     else if (d.service == 'sshd') { return('ssh-threat.png'); }
+                     else if (d.service.includes('cgpro-sip')) { return('sip-threat.png'); }
+                     else if (d.service.includes('cgpro-smtp')) { return('mail-threat.png'); }
+                     else if (d.service.includes('-wp')) { return('wordpress-threat.png'); }
+                     else { return('unknown-threat.png'); }
                    })
                    .attr("x", function(d) {
                      if (d.occurences>5) { return(projection([d.lon, d.lat])[0] - 3); }
@@ -379,7 +440,9 @@ function load_threats(csvthreat) {
                      setcursor("move");
                    })
                    .on("dblclick", function(d) { detect_overlap(this); })
-                   .on("mousedown", function(d) { updateInfoPanel(d); });
+                   .on("mousedown", function(d) { updateInfoPanel(d); })
+		   .style("opacity", 0)
+                   .transition().duration(200).style("opacity", 1);
     }).on("progress", function(event){
       if (d3.event.lengthComputable) {
         var percentComplete = Math.round(d3.event.loaded * 100 / d3.event.total);
@@ -390,18 +453,20 @@ function load_threats(csvthreat) {
 }
 
 function targetsReport(csvthreat) {
+  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
-      report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+      timelineControls(true);
+      report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
     }
     report += "<h2>Targets Reports</h2>";
 
     var nested_data = d3.nest()
            .key(function(d) { return d.host; })
            .key(function(d) { return d.ip; })
-//           .rollup(function(leaves) { return leaves.length; })
-           .entries(data);
+           .entries(data)
+           .sort(function(a, b){ return d3.descending(a.values, b.values); });
 
     var total_host = 0;
     nested_data.forEach(function(i) { total_host += i.values.length; });
@@ -415,23 +480,38 @@ function targetsReport(csvthreat) {
 }
 
 function servicesReport(csvthreat) {
+  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
-      report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+      timelineControls(true);
+      report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
     }
     report +=  "<h2>Services Reports</h2>";
 
     nested_data = d3.nest()
            .key(function(d) { return d.service; })
            .key(function(d) { return d.ip; })
-           .entries(data);
+           .entries(data)
+           .sort(function(a, b){ return d3.descending(a.values, b.values); });
 
     var total_service = 0;
     nested_data.forEach(function(i) { total_service += i.values.length; });
 
+    var iconPath = 'unknown-threat.png';
     nested_data.forEach(function(i) {
-      report += i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_service*100) + "%) suspicious clients<br/>";
+      if (i.key.includes('ssh')) {
+         iconPath = 'ssh-threat.png';
+      } else if (i.key.includes('sip')) {
+         iconPath = 'sip-threat.png';
+      } else if (i.key.includes('smtp')) {
+         iconPath = 'mail-threat.png';
+      } else if (i.key.includes('recidive')) {
+         iconPath = 'hacker-threat.png';
+      } else {
+         iconPath = 'unknown-threat.png';
+      }
+      report += "<img class=\"service\" src=\"" + iconPath + "\"/>" + " " + i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_service*100) + "%) suspicious clients<br/>";
     });
 
     SDReport.html(report);
@@ -439,23 +519,26 @@ function servicesReport(csvthreat) {
 }
 
 function regionsReport(csvthreat) {
+  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
-      report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+      timelineControls(true);
+      report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
     }
     report += "<h2>Region Reports</h2>";
 
-    nested_data = d3.nest() 
+    nested_data = d3.nest()
            .key(function(d) { return d.country; })
            .key(function(d) { return d.ip; })
-           .entries(data);
+           .entries(data)
+           .sort(function(a, b){ return d3.descending(a.values, b.values); });
 
     var total_country = 0;
     nested_data.forEach(function(i) { total_country += i.values.length; });
 
     nested_data.forEach(function(i) {
-      report += i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_country*100) + "%) suspicious clients<br/>";
+      report +=  "<img class=\"country-flag\" src=\"flags/" + i.key.toLowerCase() + ".png\"/>" + " " + i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_country*100) + "%) suspicious clients<br/>";
     });
 
     SDReport.html(report);
@@ -463,7 +546,9 @@ function regionsReport(csvthreat) {
 }
 
 function timelineReport(csvthreat) {
-   var nodes = svg.selectAll(".banned_ip").remove();
+   timelineControls(true);
+   var nodes = svg.selectAll(".banned_ip").style("opacity", 1)
+     .transition().duration(200).style("opacity", 0).remove();
    nodes = [];
 
    load_threats(csvthreat);
@@ -472,14 +557,15 @@ function timelineReport(csvthreat) {
    if(currentReport == "services") { servicesReport(csvthreat); return(0); }
    if(currentReport == "targets") { targetsReport(csvthreat); return(0); }
 
-   var report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+   var report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
    SDReport.html(report);
 }
 
 function welcome() {
+  timelineControls(false);
   var report = '';
   if (timelineSwitch == true) {
-    report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
   }
   report += "<h2>Welcome</h2>";
   report += "<p>This dashboard allows you to geolocalise and to obtain statistics reports about IT Threats."
