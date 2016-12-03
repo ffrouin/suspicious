@@ -34,23 +34,33 @@ img.service {
   width: 30px;
   height: 30px;
 }
+#timeline-fastbackward {
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+}
 #timeline-backward {
-  visibility: hidden;
+  opacity: 0;
   width: 20px;
   height: 20px;
 }
 #timeline-play {
-  visibility: hidden;
+  opacity: 0;
   width: 20px;
   height: 20px;
 }
 #timeline-pause {
-  visibility: hidden;
+  opacity: 0;
   width: 20px;
   height: 20px;
 }
 #timeline-forward {
-  visibility: hidden;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+}
+#timeline-fastforward {
+  opacity: 0;
   width: 20px;
   height: 20px;
 }
@@ -203,15 +213,19 @@ dateMoveDays(-7);
 
 function timelineControls(s) {
    if (s == false) {
-	d3.select("#timeline-backward").style("visibility", "hidden");
-	d3.select("#timeline-play").style("visibility", "hidden");
-	d3.select("#timeline-pause").style("visibility", "hidden");
-	d3.select("#timeline-forward").style("visibility", "hidden");
+	d3.select("#timeline-fastbackward").style("opacity", 0);
+	d3.select("#timeline-backward").style("opacity", 0);
+	d3.select("#timeline-play").style("opacity", 0);
+	d3.select("#timeline-pause").style("opacity", 0);
+	d3.select("#timeline-forward").style("opacity", 0);
+	d3.select("#timeline-fastforward").style("opacity", 0);
    } else {
-	d3.select("#timeline-backward").style("visibility", "visible");
-	d3.select("#timeline-play").style("visibility", "visible");
-	d3.select("#timeline-pause").style("visibility", "visible");
-	d3.select("#timeline-forward").style("visibility", "visible");
+	d3.select("#timeline-fastbackward").style("opacity", 1);
+	d3.select("#timeline-backward").style("opacity", 1);
+	d3.select("#timeline-play").style("opacity", 1);
+	d3.select("#timeline-pause").style("opacity", 1);
+	d3.select("#timeline-forward").style("opacity", 1);
+	d3.select("#timeline-fastforward").style("opacity", 1);
    }
 }
 
@@ -225,10 +239,12 @@ var commandMap = [ { 'cmd-home.png' : 'home' },
                    { 'cmd-services.png' : 'services' },
                    { 'cmd-stats.png' : 'targets' },
                    { 'cmd-time.png' : 'timeline' }, 
+                   { 'cmd-time-fastbackward.png' : 'timeline-fastbackward' },
                    { 'cmd-time-backward.png' : 'timeline-backward' },
                    { 'cmd-time-play.png' : 'timeline-play' },
                    { 'cmd-time-pause.png' : 'timeline-pause' },
-                   { 'cmd-time-forward.png' : 'timeline-forward' }
+                   { 'cmd-time-forward.png' : 'timeline-forward' },
+                   { 'cmd-time-fastforward.png' : 'timeline-fastforward' }
                  ];
 
 var legendMap = [ { 'ssh-threat.png' : 'Authentication' },
@@ -266,10 +282,12 @@ SD.select("#SDCommand")
 						if(d3.map(d).values() == "services") { servicesReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "targets") { targetsReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "timeline") { timelineSwitch = false; load_threats("banned_ip.csv"); }
+						if(d3.map(d).values() == "timeline-fastbackward") { dateMoveHours(-720); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-1); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "timeline-play") { timelinePauseSwitch = setInterval(timelinePlay,500); }
 						if(d3.map(d).values() == "timeline-pause") { clearInterval(timelinePauseSwitch); timelineControls(true); }
 						if(d3.map(d).values() == "timeline-forward") { dateMoveHours(+1); timelineReport(formatTimeDBPath(currentDate)); }
+						if(d3.map(d).values() == "timeline-fastforward") { dateMoveHours(+720); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "home") { welcome(); }
                                               }
                                              })
@@ -567,7 +585,7 @@ function welcome() {
   if (timelineSwitch == true) {
     report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
   }
-  report += "<h2>Welcome</h2>";
+  report += "<h2>Last Week IT Threats - Welcome</h2>";
   report += "<p>This dashboard allows you to geolocalise and to obtain statistics reports about IT Threats."
   report += "<p><b>Statistic reports</b> : country, services, targets.<br/>";
   report += "<b>Threat reports</b> : target, source, geolocalise (country, region, city), service, timelog<br/>";
