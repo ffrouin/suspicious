@@ -66,9 +66,9 @@ img.service {
 }
 div.infoPanel {
   position: absolute;
-  border-radius: 25px;
-//  border: 1px solid #000;
-  padding: 20px; 
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 4px; 
   font: 14px serif;
   background: #78B79C;
   text-align: left;
@@ -90,18 +90,18 @@ div.infoPanel {
 }
 #SDReport {
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 #SDCommand {
   text-align: center;
   height: 60px;
-  padding: 10px;
+  padding: 5px;
 }
 #SDLegend {
-  border-radius: 25px;
+  border-radius: 10px;
   border: 1px dashed #000;
-  height: 120px;
-  padding: 20px;
+  height: 130px;
+  padding: 5px;
   text-align: center;
 }
 #SDLegend h2 {
@@ -117,16 +117,11 @@ div.infoPanel div.figure {
   float: left;
   border: none;
   padding: 10px;
+  margin: auto;
 }
 div.infoPanel div.figure img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 div.infoPanel div.figure img.command {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 div.infoPanel div.figure p {
   text-align: center;
@@ -209,7 +204,7 @@ function dateMoveHours(d) {
    currentDate=d3.time.hour.offset(currentDate, d);
 }
 
-dateMoveDays(-7);
+dateMoveDays(-14);
 
 function timelineControls(s) {
    if (s == false) {
@@ -234,25 +229,25 @@ function timelinePlay() {
 	timelineReport(formatTimeDBPath(currentDate));
 }
 
-var commandMap = [ { 'cmd-home.png' : 'home' },
-                   { 'cmd-region.png' : 'regions' },
-                   { 'cmd-services.png' : 'services' },
-                   { 'cmd-stats.png' : 'targets' },
-                   { 'cmd-time.png' : 'timeline' }, 
-                   { 'cmd-time-fastbackward.png' : 'timeline-fastbackward' },
-                   { 'cmd-time-backward.png' : 'timeline-backward' },
-                   { 'cmd-time-play.png' : 'timeline-play' },
-                   { 'cmd-time-pause.png' : 'timeline-pause' },
-                   { 'cmd-time-forward.png' : 'timeline-forward' },
-                   { 'cmd-time-fastforward.png' : 'timeline-fastforward' }
+var commandMap = [ { 'img/cmd-home.png' : 'home' },
+                   { 'img/cmd-region.png' : 'regions' },
+                   { 'img/cmd-services.png' : 'services' },
+                   { 'img/cmd-stats.png' : 'targets' },
+                   { 'img/cmd-time.png' : 'timeline' }, 
+                   { 'img/cmd-time-fastbackward.png' : 'timeline-fastbackward' },
+                   { 'img/cmd-time-backward.png' : 'timeline-backward' },
+                   { 'img/cmd-time-play.png' : 'timeline-play' },
+                   { 'img/cmd-time-pause.png' : 'timeline-pause' },
+                   { 'img/cmd-time-forward.png' : 'timeline-forward' },
+                   { 'img/cmd-time-fastforward.png' : 'timeline-fastforward' }
                  ];
 
-var legendMap = [ { 'ssh-threat.png' : 'Authentication' },
-                  { 'sip-threat.png' : 'Telephony' },
-                  { 'mail-threat.png' : 'Email' },
-                  { 'wordpress-threat.png' : 'Web' },
-                  { 'hacker-threat.png' : 'Recidive' },
-                  { 'unknown-threat.png' : 'Uncommented' }
+var legendMap = [ { 'img/ssh-threat.png' : 'Authentication' },
+                  { 'img/sip-threat.png' : 'Telephony' },
+                  { 'img/mail-threat.png' : 'Email' },
+                  { 'img/wordpress-threat.png' : 'Web' },
+                  { 'img/hacker-threat.png' : 'Recidive' },
+                  { 'img/unknown-threat.png' : 'Uncommented' }
                 ];
 
 SD.select("#SDTitle").text("Linuxtribe Earth IT Threats");
@@ -391,7 +386,7 @@ function ready(error, world, names) {
       .on('mousedown', function() {
         var country = d3.select(this).style('fill', '#9ECDB9')
         var countryName = country.attr('data-name')
-        SDReport.html("<h2>Country Report</h2><p>Selected country is " + countryName + " (source : geographic)</p>");
+        SDReport.html("<h2>Country Report</h2><p>Selected country is " + "<a href=\"https://en.wikipedia.org/wiki/" + countryName + "\" target=_blank>" + countryName + "</a> (source : geographic)</p>");
       })
       // mouse out country
       .on('mouseout', function() {
@@ -428,13 +423,13 @@ function load_threats(csvthreat) {
                    .append("image")
                    .attr("class","banned_ip")
                    .attr("xlink:href", function(d) { 
-                     if (d.service.includes('recidive')||d.occurences>=10) { return('hacker-threat.png'); }
-                     else if (d.service == 'ssh') { return('ssh-threat.png'); }
-                     else if (d.service == 'sshd') { return('ssh-threat.png'); }
-                     else if (d.service.includes('cgpro-sip')) { return('sip-threat.png'); }
-                     else if (d.service.includes('cgpro-smtp')) { return('mail-threat.png'); }
-                     else if (d.service.includes('-wp')) { return('wordpress-threat.png'); }
-                     else { return('unknown-threat.png'); }
+                     if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
+                     else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
+                     else if (d.service == 'sshd') { return('img/ssh-threat.png'); }
+                     else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
+                     else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
+                     else { return('img/unknown-threat.png'); }
                    })
                    .attr("x", function(d) {
                      if (d.occurences>5) { return(projection([d.lon, d.lat])[0] - 3); }
@@ -490,7 +485,7 @@ function targetsReport(csvthreat) {
     nested_data.forEach(function(i) { total_host += i.values.length; });
 
     nested_data.forEach(function(i) {
-      report += i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_host*100) + "%) suspicious clients<br/>";
+      report += "<b>" + i.key + ":</b> " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_host*100) + "%) suspicious clients<br/>";
     });
 
     SDReport.html(report);
@@ -516,18 +511,20 @@ function servicesReport(csvthreat) {
     var total_service = 0;
     nested_data.forEach(function(i) { total_service += i.values.length; });
 
-    var iconPath = 'unknown-threat.png';
+    var iconPath = 'img/unknown-threat.png';
     nested_data.forEach(function(i) {
       if (i.key.includes('ssh')) {
-         iconPath = 'ssh-threat.png';
+         iconPath = 'img/ssh-threat.png';
       } else if (i.key.includes('sip')) {
-         iconPath = 'sip-threat.png';
+         iconPath = 'img/sip-threat.png';
       } else if (i.key.includes('smtp')) {
-         iconPath = 'mail-threat.png';
+         iconPath = 'img/mail-threat.png';
       } else if (i.key.includes('recidive')) {
-         iconPath = 'hacker-threat.png';
+         iconPath = 'img/hacker-threat.png';
+      } else if (i.key.includes('-wp')) {
+         iconPath = 'img/wordpress-threat.png';
       } else {
-         iconPath = 'unknown-threat.png';
+         iconPath = 'img/unknown-threat.png';
       }
       report += "<img class=\"service\" src=\"" + iconPath + "\"/>" + " " + i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_service*100) + "%) suspicious clients<br/>";
     });
@@ -601,6 +598,7 @@ function updateInfoPanel(d) {
     + "<b>IP address :</b>  <a href=\"http://www.ip-adress.com/whois/"
     + d.ip + "\" target=\"_blank\">" + d.ip + "</a>"
     + "<br/><b>Country :</b> " + d.country
+    + "<br/><b>Country Flag :</b> <img class=\"country-flag\" src=\"flags/" + d.country.toLowerCase() + ".png\"/>"
     + "<br/><b>Region/City :</b> " + d.region + "/" + d.city 
     + " (source : geoip)<br/>" + "<b>Service :</b> " + d.service
     + " (" + d.occurences + " occurences)<br/>"
