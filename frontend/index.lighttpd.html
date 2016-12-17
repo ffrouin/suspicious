@@ -470,12 +470,13 @@ function load_threats(csvthreat) {
 }
 
 function targetsReport(csvthreat) {
-  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
       timelineControls(true);
       report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    } else {
+      timelineControls(false);
     }
     report += "<h2>Targets Reports</h2>";
 
@@ -497,12 +498,13 @@ function targetsReport(csvthreat) {
 }
 
 function servicesReport(csvthreat) {
-  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
       timelineControls(true);
       report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    } else {
+      timelineControls(false);
     }
     report +=  "<h2>Services Reports</h2>";
 
@@ -524,12 +526,13 @@ function servicesReport(csvthreat) {
 }
 
 function regionsReport(csvthreat) {
-  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
       timelineControls(true);
       report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+    } else {
+      timelineControls(false);
     }
     report += "<h2>Region Reports</h2>";
 
@@ -551,7 +554,9 @@ function regionsReport(csvthreat) {
 }
 
 function timelineReport(csvthreat) {
+  if (timelineSwitch == false) {
    timelineControls(true);
+  }
    var nodes = svg.selectAll(".banned_ip").style("opacity", 1)
      .transition().duration(200).style("opacity", 0).remove();
    nodes = [];
@@ -567,10 +572,11 @@ function timelineReport(csvthreat) {
 }
 
 function welcome() {
-  timelineControls(false);
   var report = '';
   if (timelineSwitch == true) {
     report = "<center><h1>" + formatTimeReport(currentDate) + "</h1></center>";
+  } else {
+    timelineControls(false);
   }
   report += "<h2>Last Month Report - Welcome</h2>";
   report += "<p>This dashboard allows you to geolocalise and to obtain statistics reports about your web visitors."

@@ -279,7 +279,7 @@ SD.select("#SDCommand")
 						if(d3.map(d).values() == "timeline") { timelineSwitch = false; load_threats("banned_ip.csv"); }
 						if(d3.map(d).values() == "timeline-fastbackward") { dateMoveHours(-720); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-1); timelineReport(formatTimeDBPath(currentDate)); }
-						if(d3.map(d).values() == "timeline-play") { timelinePauseSwitch = setInterval(timelinePlay,500); }
+						if(d3.map(d).values() == "timeline-play") { timelinePauseSwitch = setInterval(timelinePlay,1000); }
 						if(d3.map(d).values() == "timeline-pause") { clearInterval(timelinePauseSwitch); timelineControls(true); }
 						if(d3.map(d).values() == "timeline-forward") { dateMoveHours(+1); timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "timeline-fastforward") { dateMoveHours(+720); timelineReport(formatTimeDBPath(currentDate)); }
@@ -466,12 +466,13 @@ function load_threats(csvthreat) {
 }
 
 function targetsReport(csvthreat) {
-  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
       timelineControls(true);
       report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
+    } else {
+      timelineControls(false);
     }
     report += "<h2>Targets Reports</h2>";
 
@@ -493,12 +494,13 @@ function targetsReport(csvthreat) {
 }
 
 function servicesReport(csvthreat) {
-  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
       timelineControls(true);
       report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
+    } else {
+      timelineControls(false);
     }
     report +=  "<h2>Services Reports</h2>";
 
@@ -534,12 +536,13 @@ function servicesReport(csvthreat) {
 }
 
 function regionsReport(csvthreat) {
-  timelineControls(false);
   d3.csv(csvthreat, function(data) {
     var report = '';
     if (timelineSwitch == true) {
       timelineControls(true);
       report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
+    } else {
+      timelineControls(false);
     }
     report += "<h2>Region Reports</h2>";
 
@@ -577,7 +580,9 @@ function timelineReport(csvthreat) {
 }
 
 function welcome() {
-  timelineControls(false);
+  if (timelineSwitch == false) {
+    timelineControls(false);
+  }
   var report = '';
   if (timelineSwitch == true) {
     report = "<center><h1>" + formatTimeReport(currentDate) + " (UTC+0100)</h1></center>";
