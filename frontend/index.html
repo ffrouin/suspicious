@@ -263,16 +263,16 @@ SD.select("#SDCommand")
                .attr("width", 40)
                .attr("height", 40)
 	       .attr("id", function(d) { return d3.map(d).values() })
-               .on('mousedown', function(d) { pauseFlag = 0;
+               .on('mousedown', function(d) { 
 					      if (timelineSwitch == false) {
-						timelineControls(true);
+						timelineControls(false);
 						if(d3.map(d).values() == "regions") { regionsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "services") { servicesReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "targets") { targetsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "timeline") { timelineSwitch = true; timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "home") { welcome(); }
                                               } else if (timelineSwitch == true) {
-						timelineControls(false);
+						timelineControls(true);
 						if(d3.map(d).values() == "regions") { regionsReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "services") { servicesReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "targets") { targetsReport(formatTimeDBPath(currentDate)); }
