@@ -65,7 +65,7 @@ sub isTracked {
 my ($country,$region,$city,$lon,$lat);
 
 while(<STDIN>) {
-    if (/^([\d\.]+)\s(\S+)\s-\s\[(\d+)\/(\w+)\/(2016):(\d+):(\d+):(\d+)\s.+\"GET\s(\/[\w\-\.]*\/?).+\"\s(\d+)\s.+$/) {
+    if (/^([\d\.]+)\s(\S+)\s-\s\[(\d+)\/(\w+)\/(\d{4}):(\d+):(\d+):(\d+)\s.+\"GET\s(\/[\w\-\.]*\/?).+\"\s(\d+)\s.+$/) {
 	my ($ip,$service,$day,$month,$year,$hour,$min,$sec,$status)= ($1,$2.$9,$3,$month_num{$4},$5,$6,$7,$8,$10);
         my $timelog = "$day/$month/$year $hour:$min:$sec";
 
