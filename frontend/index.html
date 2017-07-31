@@ -347,8 +347,8 @@ SDReport.html("Loading earth data...");
 
 // load geo ressources
 queue()
-   .defer(d3.json, 'world-50m.json')
-   .defer(d3.tsv, 'world-country-names.tsv')
+   .defer(d3.json, 'geo/world-50m.json')
+   .defer(d3.tsv, 'geo/world-country-names.tsv')
    .await(ready)
 
 function ready(error, world, names) {
