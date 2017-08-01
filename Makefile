@@ -32,12 +32,6 @@ release-src:
 release-update:
 	cd suspicious_$(nextRelease) && debuild -S -sd -k$(gpgkey)
 
-release-i386:
+release-all:
 	cd suspicious_$(nextRelease) && debuild -i -b -us -uc
 
-release-amd64:
-	cd suspicious_$(nextRelease) && debuild -i -b -us -uc -aamd64
-	scp -P 3000 suspicious_$(nextRelease)-1_amd64.deb orion:~/
-
-release-ppa:
-	dput ppa:freddy-f/ppa suspicious_$(nextRelease)-1_source.changes
