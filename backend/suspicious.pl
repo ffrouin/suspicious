@@ -37,16 +37,16 @@ while(<FD>) {
   if (/^([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]+([^\t\s]+)[\t\s]*$/) {
     ($host,$coll,$proc,$tag,$log) = ($1,$2,$3,$4,$5);
     if ($coll eq 'local') {
-      logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $log logs/$tag.$proc.log");
-      system(COLLECTOR::build_cmd($coll)." $log logs/$tag.$proc.log");
+      logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $log /var/lib/suspicious/data/$tag.$proc.log");
+      system(COLLECTOR::build_cmd($coll)." $log /var/lib/suspicious/data/$tag.$proc.log");
     } else {
-      logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $host:$log logs/$tag.$proc.log");
-      system(COLLECTOR::build_cmd($coll)." $host:$log logs/$tag.$proc.log");
+      logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $host:$log /var/lib/suspicious/data/$tag.$proc.log");
+      system(COLLECTOR::build_cmd($coll)." $host:$log /var/lib/suspicious/data/$tag.$proc.log");
     }
-    logMsg('INFO','processor',"cat logs/$tag.$proc.log | processors/$proc.pl $tag $hist_dir >> $csv_output");
-    system("cat logs/$tag.$proc.log | processors/$proc.pl $tag $hist_dir >> $csv_output");
-    logMsg('INFO','clean    ',"unlink logs/$tag.$proc.log");
-    unlink("logs/$tag.$proc.log");
+    logMsg('INFO','processor',"cat /var/log/suspicious/data/$tag.$proc.log | /usr/share/suspicious/processors/$proc.pl $tag $hist_dir >> $csv_output");
+    system("cat /var/log/suspicious/data/$tag.$proc.log | /usr/share/suspicious/backend/processors/$proc.pl $tag $hist_dir >> $csv_output");
+    logMsg('INFO','clean    ',"unlink /var/lib/suspicious/data/$tag.$proc.log");
+    unlink("/var/lib/suspicious/data/$tag.$proc.log");
   }
 }
 close(FD);
