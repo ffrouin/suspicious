@@ -1,5 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,209.126.102.161,cgpro-sip-100,3,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-02 10:09:18
-ns1,122.228.213.146,ssh,1,CN,Zhejiang,Hangzhou,30.293600,120.161400,2016-02-02 10:30:20
-ns1,91.98.96.118,ssh,1,IR,Tehran,Pars,35.735500,51.529099,2016-02-02 10:46:37
-ns1,23.239.65.210,cgpro-sip-100,2,US,unknown,unknown,38.000000,-97.000000,2016-02-02 10:57:31

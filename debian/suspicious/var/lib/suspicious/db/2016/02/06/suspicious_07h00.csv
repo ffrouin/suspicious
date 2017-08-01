@@ -1,6 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,85.113.212.211,ssh,11,RU,Kostroma,Kostroma,57.770802,40.934399,2016-02-06 07:01:25
-ns1,85.113.212.211,recidive,3,RU,Kostroma,Kostroma,57.770802,40.934399,2016-02-06 07:01:27
-ns1,209.126.102.161,cgpro-sip-100,7,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-06 07:12:26
-ns1,208.73.206.244,cgpro-sip-100,6,US,New Jersey,Secaucus,40.780102,-74.063301,2016-02-06 07:55:36
-ns2,88.150.196.165,ssh,1,GB,unknown,unknown,51.500000,-0.130000,2016-02-06 07:21:24

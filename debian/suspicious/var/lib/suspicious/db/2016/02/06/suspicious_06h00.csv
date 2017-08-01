@@ -1,2 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,40.113.200.225,cgpro-sip-invite,1,US,Washington,Seattle,47.606201,-122.332100,2016-02-06 06:13:31

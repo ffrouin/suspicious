@@ -1,6 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,103.16.141.86,ssh,2,IN,unknown,unknown,20.000000,77.000000,2016-02-08 11:07:51
-ns3,103.16.141.86,ssh,3,IN,unknown,unknown,20.000000,77.000000,2016-02-08 11:22:37
-ns3,103.16.141.86,ssh,4,IN,unknown,unknown,20.000000,77.000000,2016-02-08 11:37:20
-ns3,103.16.141.86,ssh,5,IN,unknown,unknown,20.000000,77.000000,2016-02-08 11:52:06
-ns3,103.16.141.86,recidive,1,IN,unknown,unknown,20.000000,77.000000,2016-02-08 11:52:07

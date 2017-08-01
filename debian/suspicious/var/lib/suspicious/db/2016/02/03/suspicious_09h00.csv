@@ -1,6 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,172.93.106.70,cgpro-sip-100,4,US,unknown,unknown,38.000000,-97.000000,2016-02-03 09:31:12
-ns1,95.56.234.110,ssh,5,KZ,Almaty City,Almaty,43.256500,76.928497,2016-02-03 09:39:39
-ns1,95.56.234.110,recidive,1,KZ,Almaty City,Almaty,43.256500,76.928497,2016-02-03 09:39:41
-ns2,183.3.202.101,ssh,5,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-03 09:24:23
-ns2,183.3.202.101,recidive,1,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-03 09:24:24

@@ -1,7 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,66.190.127.102,cgpro-smtp,3,US,Alabama,Birmingham,33.420101,-86.786697,2016-01-31 18:05:50
-ns1,66.190.127.102,cgpro-smtp,4,US,Alabama,Birmingham,33.420101,-86.786697,2016-01-31 18:21:37
-ns1,89.163.219.3,cgpro-sip-100,1,DE,unknown,unknown,51.000000,9.000000,2016-01-31 18:34:52
-ns1,66.190.127.102,cgpro-smtp,5,US,Alabama,Birmingham,33.420101,-86.786697,2016-01-31 18:37:24
-ns1,66.190.127.102,recidive,1,US,Alabama,Birmingham,33.420101,-86.786697,2016-01-31 18:37:26
-ns1,81.2.244.161,ssh,1,CZ,unknown,unknown,50.083302,14.416700,2016-01-31 18:46:08

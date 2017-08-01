@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,118.102.202.131,cgpro-smtp,5,IN,Maharashtra,Pune,18.533300,73.866699,2016-01-31 22:03:06
-ns1,118.102.202.131,recidive,1,IN,Maharashtra,Pune,18.533300,73.866699,2016-01-31 22:03:08

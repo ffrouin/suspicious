@@ -1,7 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,185.40.4.30,cgpro-sip-invite,7,RU,unknown,unknown,55.750000,37.616600,2016-02-07 01:01:04
-ns1,62.210.188.100,cgpro-sip-invite,4,FR,unknown,unknown,48.860001,2.350000,2016-02-07 01:09:25
-ns1,172.93.106.70,cgpro-sip-100,9,US,unknown,unknown,38.000000,-97.000000,2016-02-07 01:09:46
-ns1,40.113.200.225,cgpro-sip-invite,3,US,Washington,Seattle,47.606201,-122.332100,2016-02-07 01:13:25
-ns1,199.168.137.195,cgpro-sip-invite,4,US,Pennsylvania,Clarks Summit,41.448601,-75.727997,2016-02-07 01:35:34
-ns1,173.242.117.177,cgpro-sip-invite,3,US,Pennsylvania,Clarks Summit,41.448601,-75.727997,2016-02-07 01:49:25

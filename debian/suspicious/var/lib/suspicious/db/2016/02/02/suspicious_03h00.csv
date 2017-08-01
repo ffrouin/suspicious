@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,218.95.228.109,cgpro-sip-100,1,CN,Qinghai,Xining,36.616699,101.766701,2016-02-02 03:06:42
-ns1,209.239.123.96,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-02 03:16:09

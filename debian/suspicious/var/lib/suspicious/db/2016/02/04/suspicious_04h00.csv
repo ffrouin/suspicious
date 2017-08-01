@@ -1,8 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,185.40.4.78,cgpro-sip-invite,3,RU,unknown,unknown,55.750000,37.616600,2016-02-04 04:09:17
-ns1,85.113.212.211,ssh,3,RU,Kostroma,Kostroma,57.770802,40.934399,2016-02-04 04:14:47
-ns1,192.139.147.102,cgpro-smtp,1,US,unknown,unknown,38.000000,-97.000000,2016-02-04 04:22:55
-ns1,209.126.102.190,cgpro-sip-100,2,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-04 04:24:57
-ns1,46.183.221.174,ssh,1,LV,unknown,unknown,57.000000,25.000000,2016-02-04 04:39:03
-ns1,208.73.206.244,cgpro-sip-100,4,US,New Jersey,Secaucus,40.780102,-74.063301,2016-02-04 04:50:11
-ns2,183.3.202.105,ssh,1,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-04 04:26:21

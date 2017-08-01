@@ -1,5 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,185.86.82.123,ssh,3,TR,Bursa,Bursa,40.191700,29.061100,2016-02-09 13:06:23
-ns3,199.168.143.136,ssh,1,US,Pennsylvania,Clarks Summit,41.448601,-75.727997,2016-02-09 13:14:36
-ns3,185.86.82.123,ssh,4,TR,Bursa,Bursa,40.191700,29.061100,2016-02-09 13:24:33
-ns3,104.43.13.64,ssh,1,US,Washington,Redmond,47.680099,-122.120598,2016-02-09 13:45:19

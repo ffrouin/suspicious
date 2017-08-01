@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,195.154.214.162,cgpro-sip-100,2,FR,unknown,unknown,48.860001,2.350000,2016-02-05 04:12:42
-ns1,208.73.206.244,cgpro-sip-100,5,US,New Jersey,Secaucus,40.780102,-74.063301,2016-02-05 04:38:44

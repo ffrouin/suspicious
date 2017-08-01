@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,207.150.183.112,cgpro-sip-100,1,US,Florida,Tampa,27.886700,-82.511703,2016-02-02 21:01:42
-ns1,95.56.234.110,ssh,1,KZ,Almaty City,Almaty,43.256500,76.928497,2016-02-02 21:11:37

@@ -1,4 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,69.14.75.198,cgpro-smtp,1,US,Michigan,Warren,42.473598,-82.996803,2016-02-05 09:32:42
-ns1,5.79.69.68,cgpro-sip-invite,3,NL,Noord-Holland,Amsterdam,52.374001,4.889700,2016-02-05 09:40:08
-ns1,209.126.101.30,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-05 09:57:46

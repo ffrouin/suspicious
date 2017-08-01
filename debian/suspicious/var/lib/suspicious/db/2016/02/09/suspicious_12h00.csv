@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,185.86.82.123,ssh,1,TR,Bursa,Bursa,40.191700,29.061100,2016-02-09 12:30:08
-ns3,185.86.82.123,ssh,2,TR,Bursa,Bursa,40.191700,29.061100,2016-02-09 12:48:15

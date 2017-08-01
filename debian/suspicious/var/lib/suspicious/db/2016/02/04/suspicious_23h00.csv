@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,172.93.106.70,cgpro-sip-100,5,US,unknown,unknown,38.000000,-97.000000,2016-02-04 23:05:01
-ns1,74.208.166.104,cgpro-sip-100,1,US,Pennsylvania,Wayne,40.054798,-75.408302,2016-02-04 23:34:54

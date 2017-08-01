@@ -1,4 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,40.113.91.152,cgpro-sip-invite,1,IE,Dublin,Dublin,53.333099,-6.248900,2016-02-03 11:05:24
-ns1,78.31.65.132,cgpro-sip-100,1,DE,unknown,unknown,51.000000,9.000000,2016-02-03 11:17:45
-ns1,199.48.164.242,cgpro-sip-invite,1,US,Florida,Jacksonville,30.068899,-81.562103,2016-02-03 11:39:00
