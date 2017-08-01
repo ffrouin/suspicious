@@ -6,7 +6,7 @@
 # Date:    Sun Feb 14 08:18:52 CET 2016
 # Author:  freddy@linuxtribe.fr
 
-use lib '/usr/share/suspicious/backend/lib/';
+use lib '/usr/share/suspicious/backend/lib';
 use COLLECTOR;
 
 my $conf = '/etc/suspicious/backend.conf';
