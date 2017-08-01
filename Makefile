@@ -4,7 +4,8 @@ gpgkey=47CBC05C
 
 src:
 	git clone https://github.com/ffrouin/suspicious
-	mv suspicious suspicious_0.0
+	mv suspicious/suspicious_0.0 .
+	rm -rf suspicious
 
 all: release-check
 
@@ -35,3 +36,5 @@ release-update:
 release-all:
 	cd suspicious_$(nextRelease) && debuild -i -b -us -uc
 
+release-ppa:
+	dput ppa:freddy-f/ppa suspicious_$(nextRelease)-1_source.changes
