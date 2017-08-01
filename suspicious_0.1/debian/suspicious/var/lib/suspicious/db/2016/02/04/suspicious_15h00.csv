@@ -1,0 +1,6 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,24.41.142.229,cgpro-smtp,1,PR,unknown,Vega Baja,18.418301,-66.393204,2016-02-04 15:01:51
+ns1,149.202.43.44,ssh,2,FR,unknown,unknown,48.860001,2.350000,2016-02-04 15:06:24
+ns1,149.202.43.44,ssh,3,FR,unknown,unknown,48.860001,2.350000,2016-02-04 15:21:55
+ns1,59.45.79.55,ssh,1,CN,Liaoning,Shenyang,41.792198,123.432800,2016-02-04 15:24:58
+ns1,192.187.103.34,cgpro-sip-100,1,US,Missouri,Kansas City,39.147202,-94.573502,2016-02-04 15:36:07

@@ -1,0 +1,5 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,187.52.26.216,cgpro-smtp,3,BR,unknown,unknown,-23.547701,-46.635799,2016-02-03 07:04:46
+ns1,207.150.183.112,cgpro-sip-100,2,US,Florida,Tampa,27.886700,-82.511703,2016-02-03 07:15:40
+ns1,208.73.206.244,cgpro-sip-100,3,US,New Jersey,Secaucus,40.780102,-74.063301,2016-02-03 07:52:36
+ns2,83.218.233.222,ssh,1,UA,unknown,unknown,50.450001,30.523300,2016-02-03 07:34:12

@@ -1,0 +1,2 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,172.93.106.70,cgpro-sip-100,2,US,unknown,unknown,38.000000,-97.000000,2016-02-01 07:43:51

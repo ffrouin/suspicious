@@ -1,0 +1,3 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,206.221.183.178,cgpro-sip-100,1,US,New Jersey,Piscataway,40.551601,-74.463699,2016-02-02 17:15:30
+ns1,89.163.132.187,cgpro-sip-100,1,DE,unknown,unknown,51.000000,9.000000,2016-02-02 17:24:02

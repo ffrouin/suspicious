@@ -1,0 +1,2 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,193.201.225.27,ssh,1,UA,unknown,unknown,50.450001,30.523300,2016-02-05 06:00:22
