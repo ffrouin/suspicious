@@ -13,8 +13,8 @@ sub build_cmd {
   my $c = $_[0];
 
   my $cmd = '';
-  unless(open(COLL,"<collectors/$c.conf")) {
-    warn "unable to open collectors/$c.conf for reading !"
+  unless(open(COLL,"</usr/share/suspicious/backend/collectors/$c.conf")) {
+    warn "unable to open /usr/share/suspicious/backend/collectors/$c.conf for reading !"
   } else {
     while (<COLL>) {
       next if (/^[;#]/);
