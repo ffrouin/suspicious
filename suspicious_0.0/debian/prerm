@@ -20,6 +20,8 @@ set -e
 case "$1" in
     remove)
 	rm /var/lib/suspicious/*.dat
+	rm /var/lib/suspicious/data/*
+	rmdir /var/lib/suspicious/data
 	;;
     upgrade|deconfigure)
     ;;
