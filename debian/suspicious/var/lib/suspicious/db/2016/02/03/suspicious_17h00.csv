@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,85.17.28.69,cgpro-sip-100,1,NL,Noord-Holland,Amsterdam,52.374001,4.889700,2016-02-03 17:02:06
+ns1,172.93.99.106,cgpro-sip-100,1,US,unknown,unknown,38.000000,-97.000000,2016-02-03 17:37:27
+ns1,178.162.198.135,cgpro-sip-100,4,DE,unknown,unknown,51.000000,9.000000,2016-02-03 17:56:14

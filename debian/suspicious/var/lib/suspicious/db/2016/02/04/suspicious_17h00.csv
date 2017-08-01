@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,23.91.70.171,cgpro-smtp,1,US,unknown,unknown,38.000000,-97.000000,2016-02-04 17:25:46
+ns1,59.45.79.55,ssh,3,CN,Liaoning,Shenyang,41.792198,123.432800,2016-02-04 17:43:41
+ns1,188.138.33.144,cgpro-sip-100,2,DE,unknown,unknown,51.000000,9.000000,2016-02-04 17:59:12

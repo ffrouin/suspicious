@@ -1,0 +1,8 @@
+frontend /usr/share/suspicious
+backend /usr/share/suspicious
+webroot /usr/share/suspicious
+db /var/lib/suspicious
+system/apache/suspicious.conf /etc/apache2/conf-enabled
+system/cron.d/suspicious /etc/cron.d
+system/logrotate.d/suspicious /etc/logrotate.d
+system/etc/suspicious /etc

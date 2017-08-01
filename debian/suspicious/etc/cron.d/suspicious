@@ -1,0 +1,5 @@
+#
+# Regular cron jobs for the suspicious package
+#
+5 4 10 * *	suspicious	wget -O /var/lib/suspicious/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f /var/lib/suspicious/GeoLiteCity.dat.gz
+

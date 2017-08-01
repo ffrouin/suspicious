@@ -1,0 +1,5 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns3,78.31.65.126,ssh,1,DE,unknown,unknown,51.000000,9.000000,2016-02-13 11:26:05
+ns3,78.31.65.126,ssh,2,DE,unknown,unknown,51.000000,9.000000,2016-02-13 11:39:35
+ns3,78.31.65.126,ssh,3,DE,unknown,unknown,51.000000,9.000000,2016-02-13 11:53:04
+ns3,178.34.184.82,ssh,1,RU,unknown,unknown,55.750000,37.616600,2016-02-13 11:53:16

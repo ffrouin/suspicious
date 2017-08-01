@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns3,159.8.34.74,ssh,1,NL,Noord-Holland,Amsterdam,52.374001,4.889700,2016-02-08 23:07:16
+ns3,89.163.213.49,ssh,5,DE,unknown,unknown,51.000000,9.000000,2016-02-08 23:21:09
+ns3,89.163.213.49,recidive,1,DE,unknown,unknown,51.000000,9.000000,2016-02-08 23:21:11

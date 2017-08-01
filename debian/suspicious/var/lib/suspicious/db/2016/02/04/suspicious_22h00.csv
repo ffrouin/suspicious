@@ -1,0 +1,6 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,93.190.137.226,cgpro-sip-invite,2,NL,unknown,unknown,52.366699,4.900000,2016-02-04 22:54:42
+ns2,222.186.56.70,ssh,1,CN,Jiangsu,Nanjing,32.061699,118.777802,2016-02-04 22:01:55
+ns2,54.149.213.143,ssh,1,US,Oregon,Boardman,45.778801,-119.528999,2016-02-04 22:26:39
+ns2,193.201.225.30,ssh,1,UA,unknown,unknown,50.450001,30.523300,2016-02-04 22:43:36
+ns2,185.130.5.200,ssh,1,LT,unknown,unknown,56.000000,24.000000,2016-02-04 22:48:00

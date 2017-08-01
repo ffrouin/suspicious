@@ -1,0 +1,4 @@
+host,ip,service,occurences,country,region,city,lat,lon,timelog
+ns1,69.64.57.36,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-05 03:13:58
+ns1,108.59.4.195,cgpro-sip-100,5,US,Delaware,unknown,39.673401,-75.705200,2016-02-05 03:23:17
+ns1,188.138.33.113,cgpro-sip-100,1,DE,unknown,unknown,51.000000,9.000000,2016-02-05 03:52:32
