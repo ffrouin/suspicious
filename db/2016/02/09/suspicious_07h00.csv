@@ -1,5 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,47.88.9.156,ssh,4,CA,Ontario,Ottawa,45.343300,-75.826500,2016-02-09 07:18:03
-ns3,175.136.242.41,ssh,3,MY,Selangor,Puchong,3.016700,101.616699,2016-02-09 07:43:41
-ns3,47.88.9.156,ssh,5,CA,Ontario,Ottawa,45.343300,-75.826500,2016-02-09 07:46:22
-ns3,47.88.9.156,recidive,1,CA,Ontario,Ottawa,45.343300,-75.826500,2016-02-09 07:46:24

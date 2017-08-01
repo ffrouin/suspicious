@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,211.151.13.121,cgpro-sip-100,3,CN,Beijing,Beijing,39.928902,116.388298,2016-02-06 21:04:12
-ns1,222.186.21.100,ssh,12,CN,Jiangsu,Nanjing,32.061699,118.777802,2016-02-06 21:55:50

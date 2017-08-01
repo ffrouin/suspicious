@@ -1,2 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,125.88.177.87,ssh,1,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-14 03:35:00

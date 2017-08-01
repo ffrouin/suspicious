@@ -1,4 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,175.136.242.41,ssh,5,MY,Selangor,Puchong,3.016700,101.616699,2016-02-09 15:22:35
-ns3,175.136.242.41,recidive,1,MY,Selangor,Puchong,3.016700,101.616699,2016-02-09 15:22:37
-ns3,121.9.213.9,ssh,1,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-09 15:26:06

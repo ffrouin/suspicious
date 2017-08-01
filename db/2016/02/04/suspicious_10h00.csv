@@ -1,5 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,89.163.140.227,cgpro-sip-invite,1,DE,unknown,unknown,51.000000,9.000000,2016-02-04 10:04:02
-ns1,206.221.177.186,cgpro-sip-100,2,US,New Jersey,Piscataway,40.551601,-74.463699,2016-02-04 10:15:40
-ns1,23.239.66.99,cgpro-sip-100,4,US,unknown,unknown,38.000000,-97.000000,2016-02-04 10:32:21
-ns1,78.31.65.126,cgpro-sip-100,2,DE,unknown,unknown,51.000000,9.000000,2016-02-04 10:51:14

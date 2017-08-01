@@ -1,6 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,66.194.155.194,cgpro-smtp,5,US,Tennessee,Collierville,35.091099,-89.651001,2016-02-01 02:12:52
-ns1,66.194.155.194,recidive,1,US,Tennessee,Collierville,35.091099,-89.651001,2016-02-01 02:12:55
-ns1,108.59.4.195,cgpro-sip-100,1,US,Delaware,unknown,39.673401,-75.705200,2016-02-01 02:19:29
-ns1,62.141.42.52,cgpro-sip-100,1,DE,unknown,unknown,51.000000,9.000000,2016-02-01 02:22:05
-ns1,199.189.86.29,cgpro-sip-100,1,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-01 02:34:21

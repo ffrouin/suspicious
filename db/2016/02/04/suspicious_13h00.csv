@@ -1,6 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,207.150.183.112,cgpro-sip-100,3,US,Florida,Tampa,27.886700,-82.511703,2016-02-04 13:11:01
-ns1,130.193.124.184,ssh,1,AM,unknown,unknown,40.000000,45.000000,2016-02-04 13:15:51
-ns1,221.194.57.246,ssh,12,CN,Hebei,Hebei,39.889702,115.275002,2016-02-04 13:32:43
-ns1,217.23.11.166,cgpro-sip-invite,1,NL,unknown,unknown,52.366699,4.900000,2016-02-04 13:34:58
-ns1,69.4.81.186,cgpro-sip-100,1,US,New York,Buffalo,42.888401,-78.876099,2016-02-04 13:49:47

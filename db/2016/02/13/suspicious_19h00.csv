@@ -1,4 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,40.114.9.44,ssh,1,US,District of Columbia,Washington,38.895100,-77.036400,2016-02-13 19:03:00
-ns3,40.114.9.44,ssh,2,US,District of Columbia,Washington,38.895100,-77.036400,2016-02-13 19:22:26
-ns3,40.114.9.44,ssh,3,US,District of Columbia,Washington,38.895100,-77.036400,2016-02-13 19:41:50
