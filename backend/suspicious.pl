@@ -43,8 +43,8 @@ while(<FD>) {
       logMsg('INFO','collector',COLLECTOR::build_cmd($coll)." $host:$log /var/lib/suspicious/data/$tag.$proc.log");
       system(COLLECTOR::build_cmd($coll)." $host:$log /var/lib/suspicious/data/$tag.$proc.log");
     }
-    logMsg('INFO','processor',"cat /var/log/suspicious/data/$tag.$proc.log | /usr/share/suspicious/processors/$proc.pl $tag $hist_dir >> $csv_output");
-    system("cat /var/log/suspicious/data/$tag.$proc.log | /usr/share/suspicious/backend/processors/$proc.pl $tag $hist_dir >> $csv_output");
+    logMsg('INFO','processor',"cat /var/lib/suspicious/data/$tag.$proc.log | /usr/share/suspicious/processors/$proc.pl $tag $hist_dir >> $csv_output");
+    system("cat /var/lib/suspicious/data/$tag.$proc.log | /usr/share/suspicious/backend/processors/$proc.pl $tag $hist_dir >> $csv_output");
     logMsg('INFO','clean    ',"unlink /var/lib/suspicious/data/$tag.$proc.log");
     unlink("/var/lib/suspicious/data/$tag.$proc.log");
   }
