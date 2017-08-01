@@ -26,6 +26,9 @@ case "$1" in
   else
      echo >&2 "not removing suspicious system account because deluser command was not found"
   fi
+
+  rm /var/spool/cron/crontabs/suspicious > /dev/null || true
+
     ;;
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;

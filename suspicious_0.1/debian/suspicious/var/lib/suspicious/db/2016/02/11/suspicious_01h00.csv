@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,113.195.145.70,ssh,1,CN,Jiangxi,Nanchang,28.549999,115.933296,2016-02-11 01:09:23
-ns3,183.61.143.147,ssh,1,CN,Guangdong,Guangzhou,23.116699,113.250000,2016-02-11 01:13:24

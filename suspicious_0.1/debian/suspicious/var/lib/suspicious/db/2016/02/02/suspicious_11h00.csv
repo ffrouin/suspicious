@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,155.94.64.106,cgpro-sip-100,2,US,Florida,Jacksonville,30.068899,-81.562103,2016-02-02 11:07:02
-ns1,69.30.221.162,cgpro-sip-100,1,US,Missouri,Kansas City,39.106800,-94.566002,2016-02-02 11:48:37

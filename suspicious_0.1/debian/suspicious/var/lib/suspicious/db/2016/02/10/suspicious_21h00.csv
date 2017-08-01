@@ -1,2 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns3,1.93.129.5,ssh,1,CN,Beijing,Beijing,39.928902,116.388298,2016-02-10 21:10:08

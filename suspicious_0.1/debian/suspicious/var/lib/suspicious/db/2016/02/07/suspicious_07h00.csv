@@ -1,2 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns2,185.130.5.200,ssh,2,LT,unknown,unknown,56.000000,24.000000,2016-02-07 07:20:19

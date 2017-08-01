@@ -1,2 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,92.88.255.55,cgpro-smtp,3,FR,unknown,unknown,48.860001,2.350000,2016-01-31 14:23:35

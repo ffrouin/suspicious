@@ -1,6 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,222.186.21.100,ssh,6,CN,Jiangsu,Nanjing,32.061699,118.777802,2016-02-02 06:13:52
-ns1,222.186.21.100,ssh,7,CN,Jiangsu,Nanjing,32.061699,118.777802,2016-02-02 06:31:32
-ns1,222.186.21.100,ssh,8,CN,Jiangsu,Nanjing,32.061699,118.777802,2016-02-02 06:49:27
-ns1,222.186.21.100,recidive,1,CN,Jiangsu,Nanjing,32.061699,118.777802,2016-02-02 06:49:28
-ns2,185.130.5.246,ssh,2,LT,unknown,unknown,56.000000,24.000000,2016-02-02 06:46:27

@@ -1,3 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,23.239.65.133,cgpro-sip-100,1,US,unknown,unknown,38.000000,-97.000000,2016-02-01 12:11:16
-ns1,185.130.5.179,ssh,1,LT,unknown,unknown,56.000000,24.000000,2016-02-01 12:47:02

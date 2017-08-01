@@ -1,4 +1,3 @@
 /etc/apache2/conf-enabled/suspicious.conf
 /etc/logrotate.d/suspicious
 /etc/suspicious/backend.conf
-/etc/cron.d/suspicious

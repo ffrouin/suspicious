@@ -1,5 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,5.79.69.72,cgpro-sip-100,1,NL,Noord-Holland,Amsterdam,52.374001,4.889700,2016-01-31 17:06:54
-ns1,66.190.127.102,cgpro-smtp,1,US,Alabama,Birmingham,33.420101,-86.786697,2016-01-31 17:34:07
-ns1,92.88.255.55,cgpro-smtp,4,FR,unknown,unknown,48.860001,2.350000,2016-01-31 17:46:15
-ns1,66.190.127.102,cgpro-smtp,2,US,Alabama,Birmingham,33.420101,-86.786697,2016-01-31 17:50:00

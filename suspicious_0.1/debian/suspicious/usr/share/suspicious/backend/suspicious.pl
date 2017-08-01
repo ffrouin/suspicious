@@ -6,13 +6,13 @@
 # Date:    Sun Feb 14 08:18:52 CET 2016
 # Author:  freddy@linuxtribe.fr
 
-use lib '/usr/share/suspicious/backend/lib/';
+use lib '/usr/share/suspicious/backend/lib';
 use COLLECTOR;
 
 my $conf = '/etc/suspicious/backend.conf';
 my $backendLog = '/var/log/suspicious.log';
 my $hist_dir = '/var/lib/suspicious/db';
-my $csv_output = '/var/www/html/suspicious/banned_ip.csv';
+my $csv_output = '/var/lib/suspicious/db/banned_ip.csv';
 
 unless(open(LOG,">>$backendLog")) {
   die "Unable to open $backendLog for writing !";

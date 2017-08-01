@@ -1,9 +1,0 @@
-host,ip,service,occurences,country,region,city,lat,lon,timelog
-ns1,209.126.117.99,cgpro-sip-100,4,US,Missouri,Saint Louis,38.631199,-90.192200,2016-02-07 03:04:32
-ns1,181.198.102.172,cgpro-sip-100,1,EC,Guayas,Guayaquil,-2.166700,-79.900002,2016-02-07 03:07:43
-ns1,63.141.238.58,cgpro-sip-100,7,US,Missouri,Kansas City,39.147202,-94.573502,2016-02-07 03:12:21
-ns1,183.101.30.3,ssh,1,KR,unknown,unknown,37.570000,126.980003,2016-02-07 03:15:05
-ns1,89.163.140.250,cgpro-sip-invite,1,DE,unknown,unknown,51.000000,9.000000,2016-02-07 03:15:37
-ns1,183.101.30.3,ssh,2,KR,unknown,unknown,37.570000,126.980003,2016-02-07 03:38:32
-ns1,188.138.102.149,cgpro-sip-100,2,DE,unknown,unknown,51.000000,9.000000,2016-02-07 03:55:41
-ns2,52.28.139.49,ssh,1,DE,Hessen,Frankfurt,50.116699,8.683300,2016-02-07 03:35:18

@@ -1,8 +1,8 @@
 Package: suspicious
 Version: 0.1-1
-Architecture: amd64
+Architecture: all
 Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
-Installed-Size: 1830
+Installed-Size: 1673
 Depends: apache2, perl5, fail2ban, geoip-bin, wget, unzip
 Section: perl
 Priority: optional
