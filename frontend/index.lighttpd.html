@@ -266,9 +266,9 @@ SD.select("#SDCommand")
                .on('mousedown', function(d) { 
 					      if (timelineSwitch == false) {
 						timelineControls(false);
-						if(d3.map(d).values() == "regions") { regionsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
-						if(d3.map(d).values() == "services") { servicesReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
-						if(d3.map(d).values() == "targets") { targetsReport("banned_ip.csv"); currentReport=d3.map(d).values(); }
+						if(d3.map(d).values() == "regions") { regionsReport("db/banned_ip.csv"); currentReport=d3.map(d).values(); }
+						if(d3.map(d).values() == "services") { servicesReport("db/banned_ip.csv"); currentReport=d3.map(d).values(); }
+						if(d3.map(d).values() == "targets") { targetsReport("db/banned_ip.csv"); currentReport=d3.map(d).values(); }
 						if(d3.map(d).values() == "timeline") { timelineSwitch = true; timelineReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "home") { welcome(); }
                                               } else if (timelineSwitch == true) {
@@ -276,7 +276,7 @@ SD.select("#SDCommand")
 						if(d3.map(d).values() == "regions") { regionsReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "services") { servicesReport(formatTimeDBPath(currentDate)); }
 						if(d3.map(d).values() == "targets") { targetsReport(formatTimeDBPath(currentDate)); }
-						if(d3.map(d).values() == "timeline") { timelineSwitch = false; SDReport.html("Loading visitors..."); load_threats("banned_ip.csv"); }
+						if(d3.map(d).values() == "timeline") { timelineSwitch = false; SDReport.html("Loading visitors..."); load_threats("db/banned_ip.csv"); }
 						if(d3.map(d).values() == "timeline-fastbackward") { dateMoveHours(-720); timelineReport(formatTimeDBPath(currentDate)); }
                                                 if(d3.map(d).values() == "timeline-backward") { dateMoveHours(-24); timelineReport(formatTimeDBPath(currentDate)); }
                                                 if(d3.map(d).values() == "timeline-play") { timelinePauseSwitch = setInterval(timelinePlay,1000); }
@@ -412,7 +412,7 @@ function ready(error, world, names) {
 
   // inform end-user everything's loaded
   SDReport.html("Loading visitors...");
-  load_threats("banned_ip.csv");
+  load_threats("db/banned_ip.csv");
 }
 
 function load_threats(csvthreat) {
