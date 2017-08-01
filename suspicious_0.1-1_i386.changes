@@ -15,9 +15,9 @@ Changes:
  .
    * Initial release.
 Checksums-Sha1: 
- b3f92be8a3323e57aaaf263e7d102e2df43ed872 794732 suspicious_0.1-1_all.deb
+ 7208b2779ae7487fabab71184e76c9859d9b3e1f 794694 suspicious_0.1-1_all.deb
 Checksums-Sha256: 
- 8341d5b9b8413d3c2c68c02df36f0f062eb019f3d7dfc764d2855292acd1ae90 794732 suspicious_0.1-1_all.deb
+ 36a0d536953541b64f08e7610e2a903ff8a4577b19d753579fd2ba86ca2fd8f0 794694 suspicious_0.1-1_all.deb
 Files: 
- 250763b8cc1842398a8cbcb72cd1127b 794732 perl optional suspicious_0.1-1_all.deb
+ d6bb9366e00caf6d09dc2ef0c82873f2 794694 perl optional suspicious_0.1-1_all.deb
 Original-Maintainer: Freddy Frouin <freddy@linuxtribe.fr>

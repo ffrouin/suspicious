@@ -427,7 +427,10 @@ function load_threats(csvthreat) {
                      else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
                      else if (d.service == 'sshd') { return('img/ssh-threat.png'); }
                      else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
+                     else if (d.service.includes('asterisk')) { return('img/sip-threat.png'); }
                      else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('cgpro-account')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('cgpro-dnsbl')) { return('img/mail-threat.png'); }
                      else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
                      else { return('img/unknown-threat.png'); }
                    })
@@ -517,8 +520,14 @@ function servicesReport(csvthreat) {
     nested_data.forEach(function(i) {
       if (i.key.includes('ssh')) {
          iconPath = 'img/ssh-threat.png';
+      } else if (i.key.includes('asterisk')) {
+         iconPath = 'img/sip-threat.png';
       } else if (i.key.includes('sip')) {
          iconPath = 'img/sip-threat.png';
+      } else if (i.key.includes('cgpro-dnsbl')) {
+         iconPath = 'img/mail-threat.png';
+      } else if (i.key.includes('cgpro-account')) {
+         iconPath = 'img/mail-threat.png';
       } else if (i.key.includes('smtp')) {
          iconPath = 'img/mail-threat.png';
       } else if (i.key.includes('recidive')) {

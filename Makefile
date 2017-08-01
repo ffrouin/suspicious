@@ -2,11 +2,6 @@ currentRelease = 0.0
 nextRelease = 0.1
 gpgkey=47CBC05C
 
-src:
-	git clone https://github.com/ffrouin/suspicious
-	mv suspicious/suspicious_0.0 .
-	rm -rf suspicious
-
 all: release-check
 
 update: release-new orig-pkg release-src release-bin release-ppa

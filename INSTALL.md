@@ -3,3 +3,11 @@
 	wget https://github.com/ffrouin/suspicious/raw/master/suspicious_0.1-1_all.deb
 	dpkg -i suspicious_0.1-1_all.deb
 
+# Update your suspicious db with your latest fail2ban data
+
+	su - suspicious
+	export PERL5LIB=/usr/share/suspicious/backend/lib && /usr/share/suspicious/backend/suspicious.pl
+
+# Access your dashboard
+
+	http://localhost/suspicious
