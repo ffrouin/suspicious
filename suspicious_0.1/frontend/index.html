@@ -427,7 +427,10 @@ function load_threats(csvthreat) {
                      else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
                      else if (d.service == 'sshd') { return('img/ssh-threat.png'); }
                      else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
+                     else if (d.service.includes('asterisk')) { return('img/sip-threat.png'); }
                      else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('cgpro-account')) { return('img/mail-threat.png'); }
+                     else if (d.service.includes('cgpro-dnbl')) { return('img/mail-threat.png'); }
                      else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
                      else { return('img/unknown-threat.png'); }
                    })
