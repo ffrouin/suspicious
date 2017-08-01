@@ -26,6 +26,9 @@ case "$1" in
 	su suspicious -c "wget -O /var/lib/suspicious/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f /var/lib/suspicious/GeoLiteCity.dat.gz"
 
 	touch /var/log/suspicious.log && chown suspicious:suspicious /var/log/suspicious.log
+
+	chmod 600 /var/spool/cron/crontabs/suspicious
+	chown suspicious:crontab /var/spool/cron/crontabs/suspicious
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
