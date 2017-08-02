@@ -9,7 +9,7 @@
 	wget https://github.com/ffrouin/suspicious/raw/master/suspicious_0.1-1_all.deb
 	sudo dpkg -i suspicious_0.1-1_all.deb
 
-Here is the details of what is installed :
+Here is the detail of what is installed :
 
 	User account : suspicious (home -> /var/lib/suspicious)
 	User crontab : GeoIP DB update && report build on monday morning
