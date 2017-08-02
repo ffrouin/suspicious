@@ -28,7 +28,15 @@ The package provides sample of configuration for apache2, lighttpd and nginx.
 
 ### Apache2
 
-	ln -s /usr/share/suspicious/apache/suspicious.conf /etc/apache2/conf-enabled/suspicious.conf
+	sudo ln -s /usr/share/suspicious/apache/suspicious.conf /etc/apache2/conf-enabled/suspicious.conf
+	sudo service apache2 restart
+
+### Lighttpd
+
+	sudo ln -s /usr/share/suspicious/lighttpd/suspicious.conf /etc/lighttpd/conf-enabled/suspicious.conf
+	sudo service lighttpd restart
+
+### Nginx
 
 ## Access your dashboard
 
