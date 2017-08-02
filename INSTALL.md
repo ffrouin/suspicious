@@ -2,7 +2,7 @@
 
 ## First install package required to satisfy functional dependencies
 
-	sudo apt-get install apache2 fail2ban geoip-bin wget unzip
+	sudo apt-get install geoip-bin wget unzip
 
 ## Then download the suspicious debian package
 
@@ -12,16 +12,23 @@
 Here is the detail of what is installed :
 
 	User account : suspicious (home -> /var/lib/suspicious)
-	User crontab : GeoIP DB update && report build on monday morning
-	Suspicious static data : /usr/share/suspicious
-	Suspicious user data : /var/lib/suspicious/db
-	Apache2 setup : /etc/apache2/enabled-conf/suspicious.conf
+	Crontab : /etc/cron.d/suspicious (GeoIP DB update && report build on monday morning)
+	Static data : /usr/share/suspicious
+	Live data : /var/lib/suspicious/db
 	Log : /var/log/fail2ban.log (/etc/logrotate.conf/suspicious)
 
 ## Update your suspicious db with your latest fail2ban data
 
 	sudo su - suspicious
 	export PERL5LIB=/usr/share/suspicious/backend/lib && /usr/share/suspicious/backend/suspicious.pl
+
+## Configure your web service for suspicious
+
+The package provides sample of configuration for apache2, lighttpd and nginx.
+
+### Apache2
+
+	ln -s /usr/share/suspicious/apache/suspicious.conf /etc/apache2/conf-enabled/suspicious.conf
 
 ## Access your dashboard
 
