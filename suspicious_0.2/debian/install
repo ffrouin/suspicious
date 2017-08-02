@@ -1,0 +1,9 @@
+frontend /usr/share/suspicious
+backend /usr/share/suspicious
+db /var/lib/suspicious
+system/apache /usr/share/suspicious
+system/lighttpd /usr/share/suspicious
+system/nginx /usr/share/suspicious
+system/cron.d/suspicious /etc/cron.d
+system/logrotate.d/suspicious /etc/logrotate.d
+system/etc/suspicious /etc

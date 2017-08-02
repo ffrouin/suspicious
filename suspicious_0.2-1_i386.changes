@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Wed, 02 Aug 2017 18:42:54 +0200
+Source: suspicious
+Binary: suspicious
+Architecture: all
+Version: 0.2-1
+Distribution: trusty
+Urgency: low
+Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
+Changed-By: freddy <freddy@linuxtribe.fr>
+Description: 
+ suspicious - Track IT Threats on an interactive Earth Map
+Changes: 
+ suspicious (0.2-1) trusty; urgency=low
+ .
+   * dependencies update and documentation. deployment adjustment.
+Checksums-Sha1: 
+ 22e37a88eded9f623b147076b5550a5920c74968 794288 suspicious_0.2-1_all.deb
+Checksums-Sha256: 
+ 3ca342878d2b71d80c8a7735d3d05342847e03a807e273e70388a342a2aacba6 794288 suspicious_0.2-1_all.deb
+Files: 
+ 6f9cd2223781404d411d3ac95c908345 794288 perl optional suspicious_0.2-1_all.deb
+Original-Maintainer: Freddy Frouin <freddy@linuxtribe.fr>

@@ -38,6 +38,9 @@ The package provides sample of configuration for apache2, lighttpd and nginx.
 
 ### Nginx
 
+	sudo ln -s /usr/share/suspicious/nginx/suspicious.conf /etc/nginx/conf.d/suspicious.conf
+	sudo service nginx restart
+
 ## Access your dashboard
 
 	http://localhost/suspicious

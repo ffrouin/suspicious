@@ -1,0 +1,6 @@
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow	user   command
+5 4 10 * *	suspicious	wget -O /var/lib/suspicious/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f /var/lib/suspicious/GeoLiteCity.dat.gz
+
+0 5 * * 1	suspicious	export PERL5LIB=/usr/share/suspicious/backend/lib && /usr/share/suspicious/backend/suspicious.pl

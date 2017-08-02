@@ -48,6 +48,6 @@ dpkg-genchanges: binary-only upload - not including any source code
 dpkg-source: info: using options from suspicious_0.1/debian/source/options: --tar-ignore=.git/* --tar-ignore=*/README.md --tar-ignore=*/INSTALL.md
 dpkg-buildpackage: binary only upload (no source included)
 Now running lintian...
-W: suspicious: improbable-bug-number-in-closes 000000
+W: suspicious: new-package-should-close-itp-bug
 W: suspicious: script-not-executable usr/share/suspicious/backend/processors/template.pl
 Finished running lintian.
