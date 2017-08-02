@@ -6,8 +6,8 @@
 
 ## Then download the suspicious debian package
 
-	wget https://github.com/ffrouin/suspicious/raw/master/suspicious_0.1-1_all.deb
-	sudo dpkg -i suspicious_0.1-1_all.deb
+	wget https://github.com/ffrouin/suspicious/raw/master/suspicious_0.2-1_all.deb
+	sudo dpkg -i suspicious_0.2-1_all.deb
 
 Here is the detail of what is installed :
 
