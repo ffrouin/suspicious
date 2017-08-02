@@ -45,6 +45,10 @@ The package provides sample of configuration for apache2, lighttpd and nginx.
 
 	http://localhost/suspicious
 
+You can browse db made of CSV files if you need to access raw data :
+
+	http://localhost/suspicious/db
+
 # Manage multiple sources to integrate IT Threat Reports
 
 ## Generate ssh key pair for suspicious user
@@ -80,3 +84,6 @@ Paste RSA public key to file :
 
 	http://localhost/suspicious
 
+You can browse db made of CSV files if you need to access raw data :
+
+	http://localhost/suspicious/db
