@@ -20,9 +20,11 @@ set -e
 
 
 case "$1" in
-    purge|remove)
+    remove)
+	;;
+    purge)
   if [ -x "$(command -v deluser)" ]; then
-     deluser --quiet suspicious > /dev/null || true
+     deluser --system --quiet suspicious > /dev/null || true
   else
      echo >&2 "not removing suspicious system account because deluser command was not found"
   fi

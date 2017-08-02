@@ -2,14 +2,18 @@ Package: suspicious
 Version: 0.1-1
 Architecture: all
 Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
-Installed-Size: 1673
-Depends: apache2, perl5, fail2ban, geoip-bin, wget, unzip
+Installed-Size: 1660
+Depends: perl5, geoip-bin, wget, unzip
 Section: perl
 Priority: optional
 Homepage: https://github.com/ffrouin/suspicious
 Description: Track IT Threats on an interactive Earth Map
-  Statistic reports include countries, services, targets
-  Threat reports include target, source, geolocalize (country, region, city), service, timelog
-  Map included features are drag, zoom, select country, select it threat, drag it threat, disperse it threats (double click)
-  Timeline reports enable move backward and forward in time threat database. Selecting a report before going into timeline mode results into report survey over timeline.
+ Statistic reports include countries, services, targets
+  Threat reports include target, source, geolocalize (country, region, city),
+ service, timelog
+  Map included features are drag, zoom, select country, select it threat,
+ drag it threat, disperse it threats (double click)
+  Timeline reports enable move backward and forward in time threat database.
+ Selecting a report before going into timeline mode results into report survey
+ over timeline.
 Original-Maintainer: Freddy Frouin <freddy@linuxtribe.fr>

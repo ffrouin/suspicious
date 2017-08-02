@@ -10,14 +10,15 @@ Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
 Changed-By: freddy <freddy@linuxtribe.fr>
 Description: 
  suspicious - Track IT Threats on an interactive Earth Map
+Closes: 000000
 Changes: 
  suspicious (0.1-1) trusty; urgency=low
  .
-   * Initial release.
+   * Initial release. (Closes: 000000)
 Checksums-Sha1: 
- 7208b2779ae7487fabab71184e76c9859d9b3e1f 794694 suspicious_0.1-1_all.deb
+ 316038951f035f49802d22195a0b9bff5274b41e 794048 suspicious_0.1-1_all.deb
 Checksums-Sha256: 
- 36a0d536953541b64f08e7610e2a903ff8a4577b19d753579fd2ba86ca2fd8f0 794694 suspicious_0.1-1_all.deb
+ ecfda50fbd36b37795c83ecf7c2e42ebf8708f083e2e9e5c9f443b76180a415d 794048 suspicious_0.1-1_all.deb
 Files: 
- d6bb9366e00caf6d09dc2ef0c82873f2 794694 perl optional suspicious_0.1-1_all.deb
+ 8f5ee4b5dc33d4be79d6e29ae5af336e 794048 perl optional suspicious_0.1-1_all.deb
 Original-Maintainer: Freddy Frouin <freddy@linuxtribe.fr>

@@ -48,15 +48,6 @@ dpkg-genchanges: binary-only upload - not including any source code
 dpkg-source: info: using options from suspicious_0.1/debian/source/options: --tar-ignore=.git/* --tar-ignore=*/README.md --tar-ignore=*/INSTALL.md
 dpkg-buildpackage: binary only upload (no source included)
 Now running lintian...
-E: suspicious: apache2-reverse-dependency-ships-file-in-not-allowed-directory etc/apache2/conf-enabled/suspicious.conf
-W: suspicious: new-package-should-close-itp-bug
-E: suspicious: helper-templates-in-copyright
-W: suspicious: copyright-has-url-from-dh_make-boilerplate
-E: suspicious: copyright-contains-dh_make-todo-boilerplate
-W: suspicious: description-starts-with-leading-spaces
-W: suspicious: extended-description-line-too-long
-W: suspicious: extended-description-line-too-long
-W: suspicious: extended-description-line-too-long
-W: suspicious: file-in-unusual-dir var/spool/cron/crontabs/suspicious
+W: suspicious: improbable-bug-number-in-closes 000000
 W: suspicious: script-not-executable usr/share/suspicious/backend/processors/template.pl
 Finished running lintian.

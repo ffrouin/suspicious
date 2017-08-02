@@ -16,7 +16,7 @@ set -e
 
 case "$1" in
     install)
-	useradd -d /var/lib/suspicious -c "suspicious" -s /bin/bash suspicious
+	useradd --system -d /var/lib/suspicious -c "suspicious" -s /bin/bash suspicious
 	;;
     upgrade)
     	;;

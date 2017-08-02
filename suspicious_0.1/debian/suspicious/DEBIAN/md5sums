@@ -1,5 +1,6 @@
-3733f99d9b57f3f4fc1423b998532cb9  usr/share/doc/suspicious/changelog.Debian.gz
-8280452c20bc0f6190dd0461463ae0ee  usr/share/doc/suspicious/copyright
+62c16d38171f1a77028e66e0a8a197b1  usr/share/doc/suspicious/changelog.Debian.gz
+e97b40b6d6feb55cf026c6201e54f8dd  usr/share/doc/suspicious/copyright
+0347ac18c81c70c3da1d10707f7940b4  usr/share/suspicious/apache/suspicious.conf
 abd10e6777c27d51a1d963fc65d4dcf9  usr/share/suspicious/backend/README.md
 1dc7ca88a84e17f8ceda32b3ed1f3d00  usr/share/suspicious/backend/collectors/README.md
 3242ebb360014f672f327cf1353ec6d8  usr/share/suspicious/backend/collectors/geoiplookup.conf
@@ -250,4 +251,3 @@ eba1200b02d07ad7bfa8926bc6f5b427  usr/share/suspicious/frontend/index.lighttpd.h
 38e9b9aa59db8c8108255b564d5ff61e  usr/share/suspicious/frontend/js/topojson.v1.min.js
 d41d8cd98f00b204e9800998ecf8427e  var/lib/suspicious/db/README.md
 5e64f4e7d60daa3d3122f3816f7b7106  var/lib/suspicious/db/banned_ip.csv
-2e444dcc03672af5bb8834e83b626776  var/spool/cron/crontabs/suspicious
