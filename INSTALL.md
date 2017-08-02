@@ -22,7 +22,7 @@
 
 ## Generate ssh key pair for suspicious user
 
-	su - suspicious
+	sudo su - suspicious
 	ssh-keygen
 
 Copy content of this file :
