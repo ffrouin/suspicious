@@ -18,7 +18,7 @@ Here is the detail of what is installed :
 	Crontab : /etc/cron.d/suspicious (GeoIP DB update && report build on monday morning)
 	Static data : /usr/share/suspicious
 	Live data : /var/lib/suspicious/db
-	Log : /var/log/fail2ban.log (/etc/logrotate.conf/suspicious)
+	Log : /var/log/suspicious.log (/etc/logrotate.conf/suspicious)
 
 ## Update your suspicious db with your latest fail2ban data
 
