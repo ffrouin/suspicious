@@ -1,8 +1,0 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: suspicious
-Source: https://github.com/ffrouin/suspicious
-
-Files: *
-Copyright: 2017 Freddy Frouin <freddy@linuxtribe.fr>
-License: GPL-3
- Any details here : /usr/share/common-licenses/GPL-3
