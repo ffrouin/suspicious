@@ -1,5 +1,5 @@
-currentRelease = 0.1
-nextRelease = 0.2
+currentRelease = 0.2
+nextRelease = 0.3
 gpgkey=47CBC05C
 
 all: release-check
