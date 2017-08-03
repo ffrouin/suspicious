@@ -1,170 +1,92 @@
-# Suspicious
+# How to deploy Suspicious GeoDashboard
 
-IT Threats GeoDashboard
+## Install package required to satisfy functional dependencies
 
-## How to deploy Suspicious
+	sudo apt-get install geoip-bin wget unzip
 
-### Get Suspicious
+## Download the suspicious debian package
 
-	git clone https://github.com/ffrouin/suspicious
-	cd suspicious
+	wget https://github.com/ffrouin/suspicious/raw/master/suspicious_0.2-1_all.deb
 
-### Check your system binaries
+## Install suspicious
 
-Suspicious uses system cmd for internal processings. Just challenge your
-system using our Makefile with the "check" arg, it may report to you missing
-commands :
+	sudo dpkg -i suspicious_0.2-1_all.deb
 
-	make check
-	
-	whereis gunzip wget geoiplookup grep
-	gunzip: /bin/gunzip /usr/share/man/man1/gunzip.1.gz
-	wget: /usr/bin/wget /usr/bin/X11/wget /usr/share/man/man1/wget.1.gz
-	geoiplookup: /usr/bin/geoiplookup /usr/bin/X11/geoiplookup /usr/share/man/man1/geoiplookup.1.gz
-	grep: /bin/grep /usr/share/man/man1/grep.1.gz
-	perl: /usr/bin/perl /etc/perl /usr/lib/perl /usr/bin/X11/perl /usr/local/lib/perl /usr/share/perl /usr/share/man/man1/perl.1.gz
+Here is the detail of what is installed :
 
-### Deploy MaxMind GeoIP
+	User account : suspicious (home -> /var/lib/suspicious)
+	Crontab : /etc/cron.d/suspicious (GeoIP DB update && report build on monday morning)
+	Static data : /usr/share/suspicious
+	Live data : /var/lib/suspicious/db
+	Log : /var/log/fail2ban.log (/etc/logrotate.conf/suspicious)
 
-Just check your system has wget, gunzip commands installed or install them :
+## Update your suspicious db with your latest fail2ban data
 
-	sudo apt-get install wget
-	sudo apt-get install gunzip
+	sudo su - suspicious
+	export PERL5LIB=/usr/share/suspicious/backend/lib && /usr/share/suspicious/backend/suspicious.pl
 
-Our Makefile provides maxmind geoip deployment feature if you use "maxmind" as
-arg. Libs will be deployed in /usr/lib/maxmind. If you change this path,
-please update backend/collectors/geoiplookup.conf file in order suspicious
-to use your path instead of /usr/lib/maxmind.
+## Configure your web service for suspicious
 
-There's many way to add crontab entries : users crontab, /etc/cron* files. Here are
-entries you may use to update your local GeoIP database :
+The package provides sample of configuration for apache2, lighttpd and nginx.
 
-	5 4 10 * * wget -O /path/to/my/favorite/lib/dir/GeoLiteCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && gunzip -f /path/to/my/favorite/lib/dir/GeoLiteCity.dat.gz
+### Apache2
 
-#### Run a geoiplookup test with your IP
+	sudo ln -s /usr/share/suspicious/apache/suspicious.conf /etc/apache2/conf-enabled/suspicious.conf
+	sudo service apache2 restart
 
-If you don't have geoiplookup command available on your system, you may try this :
+### Lighttpd
 
-	sudo apt-get install geoip-bin
+	sudo ln -s /usr/share/suspicious/lighttpd/suspicious.conf /etc/lighttpd/conf-enabled/suspicious.conf
+	sudo service lighttpd restart
 
-in a terminal, use the following command to check your GeoIP Database is working :
+### Nginx
 
-	/usr/bin/geoiplookup -f /path/to/my/favorite/lib/dir/GeoLiteCity.dat <ip>
+	sudo ln -s /usr/share/suspicious/nginx/suspicious.conf /etc/nginx/conf.d/suspicious.conf
+	sudo service nginx restart
 
-### Install Suspicious
+## Access your dashboard
 
-	export SITE_PATH=/var/www/suspicious.yourdomain.com
-	make install
+	http://localhost/suspicious
 
-### Instanciate a web service with nginx, lighttpd
+You can browse db made of CSV files if you need to access raw data :
 
-#### Everything on the same system
+	http://localhost/suspicious/db
 
-End users should not access the backend, this directory won't be a child directory
-of your web root directory (htdocs). Backend and Frontend directory may stand in the
-same directory while Frontend directory will be the root directory of your web instance.
+# Manage multiple sources to integrate IT Threat Reports
 
-#### Frontend/Backend Architecture
+## Generate ssh key pair for suspicious user
 
-It would be possible to define an architecture with a frontend and a backend server :
-  * if data duplication is not an issue for you, a simple RDIST (differential file sync
-over ssh) would allow you to plan frontend update,
-  * an NFS mount query from the backend server should allow to mount the frontend/db
-directory with read/write access to enable backend processors to update the frontend.
+	sudo su - suspicious
+	ssh-keygen
 
-#### Make a test to check frontend is correctly working
+Copy content of this file :
 
-Our deployment release content data from our system that should display
-an initial report if you access your frontend before you launch any backend
-script.
+	/var/lib/suspicious/.ssh/id_rsa.pub
 
-### Configure the backend
+## On different sources publish RSA public key
 
-You need to configure the backend/backend.conf file in order to list
-all nodes and log files the backend needs to retrieve in order to format
-the data for the frontend.
+You may choose a system account able to read /var/log/fail2ban.log.1 (adm group) or you may change mask in /etc/logrotate.d/fail2ban.
 
-Configuration is very simple :
+Paste RSA public key to file :
 
-	;node		collector	processor	tag		file
-	adm@ns1		scp		fail2ban	ns1		/var/log/fail2ban.log.1
-	adm@ns2		scp		fail2ban	ns2		/var/log/fail2ban.log.1
-	adm@ns3		scp		fail2ban	ns3		/var/log/fail2ban.log.1
+	$HOME/.ssh/authorized_keys
 
-### Launch backend processing
+## Include different sources to suspicious backend
 
-The backend/suspicious.pl script will launch all processings to collect and format your data
-for the suspicious frontend. It will parse the backend/backend.conf file and will call defined
-collectors and processors.
+	vi /etc/suspicious/backend.conf
 
-This application has been built entirely using relative links. It means in
-order to launch properly the suspicious.pl script, you need to be in the backend
-directory. So to call it from cron, use this kind of call :
+	;node			collector	processor	tag		file
+	<user>@<remote_host>	scp		fail2ban	<report_host_name>	/var/log/fail2ban.log.1
 
-	cd /path/to/backend && ./suspicious.pl
+## Update your suspicious db with your latest fail2ban data
 
-The backend produces logs in backend/logs/backend.log while collector
-and processing errors will be send to standard error stream (2).
+	sudo su - suspicious
+	export PERL5LIB=/usr/share/suspicious/backend/lib && /usr/share/suspicious/backend/suspicious.pl
 
-### Access your reports
+## Access your dashboard
 
-If you go back to the frontend directory you may see :
+	http://localhost/suspicious
 
-  * the banned_ip.csv file has been updated and content all the data you
-processed when you previously called the suspicious.pl script from
-the backend.
+You can browse db made of CSV files if you need to access raw data :
 
-  * the frontend/db directory has been updated with sub directory trees
-containing timelined suspicious csv files.
-
-Go back to your web browser and you may see at last authentication reports
-if your fail2ban service is configured to monitor the ssh service on your
-different nodes.
-
-## How to add fail2ban services to suspicious threat groups
-
-There is a small peace of code you will have to maintain in the index.html
-frontend file in order to associate fail2ban services to suspicious threat
-groups : mail, telephony, email, web, recidive.
-
-### Threat groups
-
-If you need to modify or adapt groups icons, groups name, update the
-following var in frontend/index.html :
-
-	var legendMap = [ { 'img/ssh-threat.png' : 'Authentication' },
-			  { 'img/sip-threat.png' : 'Telephony' },
-			  { 'img/mail-threat.png' : 'Email' },
-			  { 'img/wordpress-threat.png' : 'Web' },
-			  { 'img/hacker-threat.png' : 'Recidive' },
-			  { 'img/unknown-threat.png' : 'Uncommented' }
-			];
-
-### Threat loading from csv files
-
-Then, when suspicious will load threat from csv files, we'll have to check
-fail2ban service name (d.service) and return the right image to this threat.
-
-The d.service var contain the fail2ban service name, you can use either :
-
-	d.service == "<string>"
-
-or
-
-	d.service.include("<string>")
-
-to make your check and then return the right threat group image to end-user UI :
-
-	return('img/service-threat.png')
-
-Here is the native peace of code included in your index.html you'll have to update :
-
-	.attr("xlink:href", function(d) {
-                     if (d.service.includes('recidive')||d.occurences>=10) { return('img/hacker-threat.png'); }
-                     else if (d.service == 'ssh') { return('img/ssh-threat.png'); }
-                     else if (d.service.includes('cgpro-sip')) { return('img/sip-threat.png'); }
-                     else if (d.service.includes('cgpro-smtp')) { return('img/mail-threat.png'); }
-                     else if (d.service.includes('-wp')) { return('img/wordpress-threat.png'); }
-                     else { return('img/unknown-threat.png'); }
-                   })
-
+	http://localhost/suspicious/db
