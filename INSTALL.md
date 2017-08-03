@@ -1,12 +1,15 @@
 # How to deploy Suspicious GeoDashboard
 
-## First install package required to satisfy functional dependencies
+## Install package required to satisfy functional dependencies
 
 	sudo apt-get install geoip-bin wget unzip
 
-## Then download the suspicious debian package
+## Download the suspicious debian package
 
 	wget https://github.com/ffrouin/suspicious/raw/master/suspicious_0.2-1_all.deb
+
+## Install suspicious
+
 	sudo dpkg -i suspicious_0.2-1_all.deb
 
 Here is the detail of what is installed :
