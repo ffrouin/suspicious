@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Thu, 03 Aug 2017 16:34:01 +0200
+Source: suspicious
+Binary: suspicious
+Architecture: all
+Version: 0.2-2
+Distribution: trusty
+Urgency: low
+Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
+Changed-By: freddy <freddy@linuxtribe.fr>
+Description: 
+ suspicious - Track IT Threats on an interactive Earth Map
+Changes: 
+ suspicious (0.2-2) trusty; urgency=low
+ .
+   * broken perl dependency on branch 16.04
+Checksums-Sha1: 
+ 69da4fa8773e5bffe835159644842bc78009bf3f 794444 suspicious_0.2-2_all.deb
+Checksums-Sha256: 
+ 1fae91bc92cc63e8aa0daee5dfd80d75097cebdb05ce23e8febe9dfb5d07a3be 794444 suspicious_0.2-2_all.deb
+Files: 
+ 602f9539d266d3efd2d6a879304e0ba0 794444 perl optional suspicious_0.2-2_all.deb
+Original-Maintainer: Freddy Frouin <freddy@linuxtribe.fr>

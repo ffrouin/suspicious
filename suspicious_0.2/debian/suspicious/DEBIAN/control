@@ -1,9 +1,9 @@
 Package: suspicious
-Version: 0.2-1
+Version: 0.2-2
 Architecture: all
 Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
 Installed-Size: 1668
-Depends: perl5, geoip-bin, wget, unzip
+Depends: perl, geoip-bin, wget, unzip
 Section: perl
 Priority: optional
 Homepage: https://github.com/ffrouin/suspicious

@@ -1,3 +1,9 @@
+suspicious (0.2-2) trusty; urgency=low
+
+  * broken perl dependency on branch 16.04
+
+ -- freddy <freddy@linuxtribe.fr>  Thu, 03 Aug 2017 16:34:01 +0200
+
 suspicious (0.2-1) trusty; urgency=low
 
   * dependencies update and documentation. deployment adjustment.

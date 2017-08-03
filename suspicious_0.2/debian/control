@@ -11,7 +11,7 @@ Homepage: https://github.com/ffrouin/suspicious
 
 Package: suspicious
 Architecture: all
-Depends: perl5, geoip-bin, wget, unzip, ${shlibs:Depends}
+Depends: perl, geoip-bin, wget, unzip, ${shlibs:Depends}
 Description: Track IT Threats on an interactive Earth Map
  Statistic reports include countries, services, targets
   Threat reports include target, source, geolocalize (country, region, city),
