@@ -1,8 +1,8 @@
 Package: suspicious
-Version: 0.4-1
+Version: 0.9.1-1
 Architecture: all
 Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
-Installed-Size: 1669
+Installed-Size: 1670
 Depends: perl, geoip-bin, wget, unzip
 Section: perl
 Priority: optional

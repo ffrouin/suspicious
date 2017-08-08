@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Tue, 08 Aug 2017 08:25:59 +0200
+Source: suspicious
+Binary: suspicious
+Architecture: all
+Version: 0.9.1-1
+Distribution: trusty
+Urgency: low
+Maintainer: Freddy Frouin <freddy@linuxtribe.fr>
+Changed-By: freddy <freddy@linuxtribe.fr>
+Description: 
+ suspicious - Track IT Threats on an interactive Earth Map
+Changes: 
+ suspicious (0.9.1-1) trusty; urgency=low
+ .
+   * EU Flag missing and undefined country exclusion from regions report.
+Checksums-Sha1: 
+ ea37e867b6cf1344bfe457442a372147229d29ae 795688 suspicious_0.9.1-1_all.deb
+Checksums-Sha256: 
+ e877a77daaa4b98bf72b66dbc633e2ff8c84670e7a608ddd0ca1fb1ea925f6dc 795688 suspicious_0.9.1-1_all.deb
+Files: 
+ 243b64c309158377cabada0feb58eb83 795688 perl optional suspicious_0.9.1-1_all.deb
+Original-Maintainer: Freddy Frouin <freddy@linuxtribe.fr>

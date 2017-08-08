@@ -1,3 +1,9 @@
+suspicious (0.9.1-1) trusty; urgency=low
+
+  * EU Flag missing and undefined country exclusion from regions report.
+
+ -- freddy <freddy@linuxtribe.fr>  Tue, 08 Aug 2017 08:25:59 +0200
+
 suspicious (0.4-1) trusty; urgency=low
 
   * Hong Kong flag missing. Frontend update to cover main fail2ban default fail policies.

@@ -309,7 +309,7 @@ SD.select("#SDLegend").selectAll(".legend").each(
   }
 );
 
-SD.select("#SDRevision").html("Build v0.9 02/12/2016 - author: <a href=\"http://freddy.linuxtribe.fr\">freddy@linuxtribe.fr</a>");
+SD.select("#SDRevision").html("Build v0.9.1 08/08/2017 - author: <a href=\"http://freddy.linuxtribe.fr\">freddy@linuxtribe.fr</a>");
 
 var SDReport = SD.select("#SDReport");
 
@@ -569,7 +569,9 @@ function regionsReport(csvthreat) {
     nested_data.forEach(function(i) { total_country += i.values.length; });
 
     nested_data.forEach(function(i) {
-      report +=  "<img class=\"country-flag\" src=\"flags/" + i.key.toLowerCase() + ".png\"/>" + " " + i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_country*100) + "%) suspicious clients<br/>";
+      if (i.key.toLowerCase() != "") {
+        report +=  "<img class=\"country-flag\" src=\"flags/" + i.key.toLowerCase() + ".png\"/>" + " " + i.key + ": " + i.values.length + " (" + d3.format(".2f")(i.values.length/total_country*100) + "%) suspicious clients<br/>";
+      }
     });
 
     SDReport.html(report);

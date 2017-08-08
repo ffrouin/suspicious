@@ -1,4 +1,4 @@
-bda83c05a3d9d79090135043de125536  usr/share/doc/suspicious/changelog.Debian.gz
+221f00943af845a872e22d112137ff11  usr/share/doc/suspicious/changelog.Debian.gz
 e97b40b6d6feb55cf026c6201e54f8dd  usr/share/doc/suspicious/copyright
 894dbe14d42177a2905b938ee1d80a35  usr/share/suspicious/apache/suspicious.conf
 abd10e6777c27d51a1d963fc65d4dcf9  usr/share/suspicious/backend/README.md
@@ -71,6 +71,7 @@ d798915a98660a226bb0418c6cf3ef4f  usr/share/suspicious/frontend/flags/dz.png
 847e75043e54c4aa95c219dd05605880  usr/share/suspicious/frontend/flags/er.png
 38970876b2bfb01c903419f91f026878  usr/share/suspicious/frontend/flags/es.png
 a7838af033c27a4d5d81e5e964dd45f5  usr/share/suspicious/frontend/flags/et.png
+af774d667d3a9a7baed1fcf99cbdf223  usr/share/suspicious/frontend/flags/eu.png
 d64cea1ef1a5994aadcc6380bc3f33d6  usr/share/suspicious/frontend/flags/fi.png
 5f0f59be9e403329fa7059ab48609118  usr/share/suspicious/frontend/flags/fj.png
 437654b1e67bbf1f90e971222fab6974  usr/share/suspicious/frontend/flags/fm.png
@@ -244,7 +245,7 @@ c80da91def3cfa51fd6d9ffcbd85e2a7  usr/share/suspicious/frontend/img/web-price.pn
 c71a8021d6b6e837dba7d93fd2418e63  usr/share/suspicious/frontend/img/web-repair.png
 526f67dcce776cbd73cd756d76154b68  usr/share/suspicious/frontend/img/web-visitor.png
 88cbb2958d9f544577c31303f32819eb  usr/share/suspicious/frontend/img/wordpress-threat.png
-b885bbd7d363873269d0947425102aca  usr/share/suspicious/frontend/index.html
+1727c999fc790143d1c668a69dfd6dda  usr/share/suspicious/frontend/index.html
 eba1200b02d07ad7bfa8926bc6f5b427  usr/share/suspicious/frontend/index.lighttpd.html
 39dcdcec158f502e8c1a0cc1f3ea217a  usr/share/suspicious/frontend/js/d3.geo.projection.v0.min.js
 229dbdb2bd670288db77d55b1e7fe9f7  usr/share/suspicious/frontend/js/d3.v3.min.js
